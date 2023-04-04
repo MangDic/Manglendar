@@ -1,0 +1,729 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DAC93ED529DAB81000693F6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93ED429DAB81000693F6C /* AppDelegate.swift */; };
+		DAC93ED929DAB81000693F6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93ED829DAB81000693F6C /* ViewController.swift */; };
+		DAC93EDE29DAB81300693F6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAC93EDD29DAB81300693F6C /* Assets.xcassets */; };
+		DAC93EE129DAB81300693F6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC93EDF29DAB81300693F6C /* LaunchScreen.storyboard */; };
+		DAC93EEC29DAB81400693F6C /* ManglendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93EEB29DAB81400693F6C /* ManglendarTests.swift */; };
+		DAC93EF629DAB81400693F6C /* ManglendarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93EF529DAB81400693F6C /* ManglendarUITests.swift */; };
+		DAC93EF829DAB81400693F6C /* ManglendarUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93EF729DAB81400693F6C /* ManglendarUITestsLaunchTests.swift */; };
+		DAC93F0629DAB8D200693F6C /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = DAC93F0529DAB8D200693F6C /* Then */; };
+		DAC93F0929DAB8E700693F6C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DAC93F0829DAB8E700693F6C /* SnapKit */; };
+		DAC93F0C29DAB8FC00693F6C /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = DAC93F0B29DAB8FC00693F6C /* RxCocoa */; };
+		DAC93F0E29DAB8FC00693F6C /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DAC93F0D29DAB8FC00693F6C /* RxSwift */; };
+		DAC93F1129DAB97200693F6C /* RIBs in Frameworks */ = {isa = PBXBuildFile; productRef = DAC93F1029DAB97200693F6C /* RIBs */; };
+		DAC93F1729DAB9C200693F6C /* SchedularRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F1329DAB9C200693F6C /* SchedularRouter.swift */; };
+		DAC93F1829DAB9C200693F6C /* SchedularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F1429DAB9C200693F6C /* SchedularViewController.swift */; };
+		DAC93F1929DAB9C200693F6C /* SchedularBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F1529DAB9C200693F6C /* SchedularBuilder.swift */; };
+		DAC93F1A29DAB9C200693F6C /* SchedularInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F1629DAB9C200693F6C /* SchedularInteractor.swift */; };
+		DAC93F1D29DABA0F00693F6C /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F1C29DABA0F00693F6C /* TodoList.swift */; };
+		DAC93F1F29DABA9E00693F6C /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F1E29DABA9E00693F6C /* CalendarView.swift */; };
+		DAC93F2229DBA70100693F6C /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F2129DBA70100693F6C /* CalendarCell.swift */; };
+		DAC93F2429DBBB3900693F6C /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F2329DBBB3900693F6C /* BottomSheetViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DAC93EE829DAB81400693F6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DAC93EC929DAB81000693F6C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DAC93ED029DAB81000693F6C;
+			remoteInfo = Manglendar;
+		};
+		DAC93EF229DAB81400693F6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DAC93EC929DAB81000693F6C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DAC93ED029DAB81000693F6C;
+			remoteInfo = Manglendar;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DAC93ED129DAB81000693F6C /* Manglendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Manglendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAC93ED429DAB81000693F6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DAC93ED829DAB81000693F6C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DAC93EDD29DAB81300693F6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DAC93EE029DAB81300693F6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DAC93EE229DAB81300693F6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAC93EE729DAB81400693F6C /* ManglendarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ManglendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAC93EEB29DAB81400693F6C /* ManglendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManglendarTests.swift; sourceTree = "<group>"; };
+		DAC93EF129DAB81400693F6C /* ManglendarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ManglendarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAC93EF529DAB81400693F6C /* ManglendarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManglendarUITests.swift; sourceTree = "<group>"; };
+		DAC93EF729DAB81400693F6C /* ManglendarUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManglendarUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DAC93F1329DAB9C200693F6C /* SchedularRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedularRouter.swift; sourceTree = "<group>"; };
+		DAC93F1429DAB9C200693F6C /* SchedularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedularViewController.swift; sourceTree = "<group>"; };
+		DAC93F1529DAB9C200693F6C /* SchedularBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedularBuilder.swift; sourceTree = "<group>"; };
+		DAC93F1629DAB9C200693F6C /* SchedularInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedularInteractor.swift; sourceTree = "<group>"; };
+		DAC93F1C29DABA0F00693F6C /* TodoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
+		DAC93F1E29DABA9E00693F6C /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		DAC93F2129DBA70100693F6C /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		DAC93F2329DBBB3900693F6C /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DAC93ECE29DAB81000693F6C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAC93F1129DAB97200693F6C /* RIBs in Frameworks */,
+				DAC93F0C29DAB8FC00693F6C /* RxCocoa in Frameworks */,
+				DAC93F0629DAB8D200693F6C /* Then in Frameworks */,
+				DAC93F0E29DAB8FC00693F6C /* RxSwift in Frameworks */,
+				DAC93F0929DAB8E700693F6C /* SnapKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAC93EE429DAB81400693F6C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAC93EEE29DAB81400693F6C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DAC93EC829DAB81000693F6C = {
+			isa = PBXGroup;
+			children = (
+				DAC93ED329DAB81000693F6C /* Manglendar */,
+				DAC93EEA29DAB81400693F6C /* ManglendarTests */,
+				DAC93EF429DAB81400693F6C /* ManglendarUITests */,
+				DAC93ED229DAB81000693F6C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DAC93ED229DAB81000693F6C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DAC93ED129DAB81000693F6C /* Manglendar.app */,
+				DAC93EE729DAB81400693F6C /* ManglendarTests.xctest */,
+				DAC93EF129DAB81400693F6C /* ManglendarUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DAC93ED329DAB81000693F6C /* Manglendar */ = {
+			isa = PBXGroup;
+			children = (
+				DAC93ED429DAB81000693F6C /* AppDelegate.swift */,
+				DAC93F1229DAB98300693F6C /* Schedular */,
+				DAC93ED829DAB81000693F6C /* ViewController.swift */,
+				DAC93EDD29DAB81300693F6C /* Assets.xcassets */,
+				DAC93EDF29DAB81300693F6C /* LaunchScreen.storyboard */,
+				DAC93EE229DAB81300693F6C /* Info.plist */,
+			);
+			path = Manglendar;
+			sourceTree = "<group>";
+		};
+		DAC93EEA29DAB81400693F6C /* ManglendarTests */ = {
+			isa = PBXGroup;
+			children = (
+				DAC93EEB29DAB81400693F6C /* ManglendarTests.swift */,
+			);
+			path = ManglendarTests;
+			sourceTree = "<group>";
+		};
+		DAC93EF429DAB81400693F6C /* ManglendarUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DAC93EF529DAB81400693F6C /* ManglendarUITests.swift */,
+				DAC93EF729DAB81400693F6C /* ManglendarUITestsLaunchTests.swift */,
+			);
+			path = ManglendarUITests;
+			sourceTree = "<group>";
+		};
+		DAC93F1229DAB98300693F6C /* Schedular */ = {
+			isa = PBXGroup;
+			children = (
+				DAC93F1B29DAB9FA00693F6C /* SubViews */,
+				DAC93F1329DAB9C200693F6C /* SchedularRouter.swift */,
+				DAC93F1429DAB9C200693F6C /* SchedularViewController.swift */,
+				DAC93F1529DAB9C200693F6C /* SchedularBuilder.swift */,
+				DAC93F1629DAB9C200693F6C /* SchedularInteractor.swift */,
+			);
+			path = Schedular;
+			sourceTree = "<group>";
+		};
+		DAC93F1B29DAB9FA00693F6C /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				DAC93F2029DBA6EF00693F6C /* Calendar */,
+				DAC93F1C29DABA0F00693F6C /* TodoList.swift */,
+				DAC93F2329DBBB3900693F6C /* BottomSheetViewController.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		DAC93F2029DBA6EF00693F6C /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				DAC93F1E29DABA9E00693F6C /* CalendarView.swift */,
+				DAC93F2129DBA70100693F6C /* CalendarCell.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DAC93ED029DAB81000693F6C /* Manglendar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DAC93EFB29DAB81400693F6C /* Build configuration list for PBXNativeTarget "Manglendar" */;
+			buildPhases = (
+				DAC93ECD29DAB81000693F6C /* Sources */,
+				DAC93ECE29DAB81000693F6C /* Frameworks */,
+				DAC93ECF29DAB81000693F6C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Manglendar;
+			packageProductDependencies = (
+				DAC93F0529DAB8D200693F6C /* Then */,
+				DAC93F0829DAB8E700693F6C /* SnapKit */,
+				DAC93F0B29DAB8FC00693F6C /* RxCocoa */,
+				DAC93F0D29DAB8FC00693F6C /* RxSwift */,
+				DAC93F1029DAB97200693F6C /* RIBs */,
+			);
+			productName = Manglendar;
+			productReference = DAC93ED129DAB81000693F6C /* Manglendar.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DAC93EE629DAB81400693F6C /* ManglendarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DAC93EFE29DAB81400693F6C /* Build configuration list for PBXNativeTarget "ManglendarTests" */;
+			buildPhases = (
+				DAC93EE329DAB81400693F6C /* Sources */,
+				DAC93EE429DAB81400693F6C /* Frameworks */,
+				DAC93EE529DAB81400693F6C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DAC93EE929DAB81400693F6C /* PBXTargetDependency */,
+			);
+			name = ManglendarTests;
+			productName = ManglendarTests;
+			productReference = DAC93EE729DAB81400693F6C /* ManglendarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DAC93EF029DAB81400693F6C /* ManglendarUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DAC93F0129DAB81400693F6C /* Build configuration list for PBXNativeTarget "ManglendarUITests" */;
+			buildPhases = (
+				DAC93EED29DAB81400693F6C /* Sources */,
+				DAC93EEE29DAB81400693F6C /* Frameworks */,
+				DAC93EEF29DAB81400693F6C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DAC93EF329DAB81400693F6C /* PBXTargetDependency */,
+			);
+			name = ManglendarUITests;
+			productName = ManglendarUITests;
+			productReference = DAC93EF129DAB81400693F6C /* ManglendarUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DAC93EC929DAB81000693F6C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					DAC93ED029DAB81000693F6C = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					DAC93EE629DAB81400693F6C = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = DAC93ED029DAB81000693F6C;
+					};
+					DAC93EF029DAB81400693F6C = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = DAC93ED029DAB81000693F6C;
+					};
+				};
+			};
+			buildConfigurationList = DAC93ECC29DAB81000693F6C /* Build configuration list for PBXProject "Manglendar" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DAC93EC829DAB81000693F6C;
+			packageReferences = (
+				DAC93F0429DAB8D200693F6C /* XCRemoteSwiftPackageReference "Then" */,
+				DAC93F0729DAB8E700693F6C /* XCRemoteSwiftPackageReference "SnapKit" */,
+				DAC93F0A29DAB8FC00693F6C /* XCRemoteSwiftPackageReference "RxSwift" */,
+				DAC93F0F29DAB97200693F6C /* XCRemoteSwiftPackageReference "RIBs" */,
+			);
+			productRefGroup = DAC93ED229DAB81000693F6C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DAC93ED029DAB81000693F6C /* Manglendar */,
+				DAC93EE629DAB81400693F6C /* ManglendarTests */,
+				DAC93EF029DAB81400693F6C /* ManglendarUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DAC93ECF29DAB81000693F6C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAC93EE129DAB81300693F6C /* LaunchScreen.storyboard in Resources */,
+				DAC93EDE29DAB81300693F6C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAC93EE529DAB81400693F6C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAC93EEF29DAB81400693F6C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DAC93ECD29DAB81000693F6C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAC93ED929DAB81000693F6C /* ViewController.swift in Sources */,
+				DAC93F1D29DABA0F00693F6C /* TodoList.swift in Sources */,
+				DAC93F1729DAB9C200693F6C /* SchedularRouter.swift in Sources */,
+				DAC93F2429DBBB3900693F6C /* BottomSheetViewController.swift in Sources */,
+				DAC93F1829DAB9C200693F6C /* SchedularViewController.swift in Sources */,
+				DAC93F2229DBA70100693F6C /* CalendarCell.swift in Sources */,
+				DAC93F1F29DABA9E00693F6C /* CalendarView.swift in Sources */,
+				DAC93F1929DAB9C200693F6C /* SchedularBuilder.swift in Sources */,
+				DAC93F1A29DAB9C200693F6C /* SchedularInteractor.swift in Sources */,
+				DAC93ED529DAB81000693F6C /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAC93EE329DAB81400693F6C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAC93EEC29DAB81400693F6C /* ManglendarTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAC93EED29DAB81400693F6C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAC93EF629DAB81400693F6C /* ManglendarUITests.swift in Sources */,
+				DAC93EF829DAB81400693F6C /* ManglendarUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DAC93EE929DAB81400693F6C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DAC93ED029DAB81000693F6C /* Manglendar */;
+			targetProxy = DAC93EE829DAB81400693F6C /* PBXContainerItemProxy */;
+		};
+		DAC93EF329DAB81400693F6C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DAC93ED029DAB81000693F6C /* Manglendar */;
+			targetProxy = DAC93EF229DAB81400693F6C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DAC93EDF29DAB81300693F6C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DAC93EE029DAB81300693F6C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DAC93EF929DAB81400693F6C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DAC93EFA29DAB81400693F6C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DAC93EFC29DAB81400693F6C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Manglendar/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Manglendar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DAC93EFD29DAB81400693F6C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Manglendar/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Manglendar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		DAC93EFF29DAB81400693F6C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ManglendarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Manglendar.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Manglendar";
+			};
+			name = Debug;
+		};
+		DAC93F0029DAB81400693F6C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ManglendarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Manglendar.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Manglendar";
+			};
+			name = Release;
+		};
+		DAC93F0229DAB81400693F6C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ManglendarUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Manglendar;
+			};
+			name = Debug;
+		};
+		DAC93F0329DAB81400693F6C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ManglendarUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Manglendar;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DAC93ECC29DAB81000693F6C /* Build configuration list for PBXProject "Manglendar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAC93EF929DAB81400693F6C /* Debug */,
+				DAC93EFA29DAB81400693F6C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DAC93EFB29DAB81400693F6C /* Build configuration list for PBXNativeTarget "Manglendar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAC93EFC29DAB81400693F6C /* Debug */,
+				DAC93EFD29DAB81400693F6C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DAC93EFE29DAB81400693F6C /* Build configuration list for PBXNativeTarget "ManglendarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAC93EFF29DAB81400693F6C /* Debug */,
+				DAC93F0029DAB81400693F6C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DAC93F0129DAB81400693F6C /* Build configuration list for PBXNativeTarget "ManglendarUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAC93F0229DAB81400693F6C /* Debug */,
+				DAC93F0329DAB81400693F6C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DAC93F0429DAB8D200693F6C /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		DAC93F0729DAB8E700693F6C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
+		DAC93F0A29DAB8FC00693F6C /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		DAC93F0F29DAB97200693F6C /* XCRemoteSwiftPackageReference "RIBs" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/uber/RIBs";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DAC93F0529DAB8D200693F6C /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DAC93F0429DAB8D200693F6C /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+		DAC93F0829DAB8E700693F6C /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DAC93F0729DAB8E700693F6C /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		DAC93F0B29DAB8FC00693F6C /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DAC93F0A29DAB8FC00693F6C /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		DAC93F0D29DAB8FC00693F6C /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DAC93F0A29DAB8FC00693F6C /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		DAC93F1029DAB97200693F6C /* RIBs */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DAC93F0F29DAB97200693F6C /* XCRemoteSwiftPackageReference "RIBs" */;
+			productName = RIBs;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = DAC93EC929DAB81000693F6C /* Project object */;
+}
