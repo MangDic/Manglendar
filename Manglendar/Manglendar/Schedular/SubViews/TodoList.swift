@@ -20,6 +20,7 @@ class TodoListView: UIView {
     }
     
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout).then {
+        $0.backgroundColor = .white
         $0.showsHorizontalScrollIndicator = false
         $0.register(TodoListCell.self, forCellWithReuseIdentifier: TodoListCell.id)
     }

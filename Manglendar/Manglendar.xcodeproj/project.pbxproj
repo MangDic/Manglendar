@@ -26,7 +26,13 @@
 		DAC93F1D29DABA0F00693F6C /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F1C29DABA0F00693F6C /* TodoList.swift */; };
 		DAC93F1F29DABA9E00693F6C /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F1E29DABA9E00693F6C /* CalendarView.swift */; };
 		DAC93F2229DBA70100693F6C /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F2129DBA70100693F6C /* CalendarCell.swift */; };
-		DAC93F2429DBBB3900693F6C /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F2329DBBB3900693F6C /* BottomSheetViewController.swift */; };
+		DAC93F2629DC00AA00693F6C /* EventsDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F2529DC00AA00693F6C /* EventsDetailCell.swift */; };
+		DAC93F2829DC078800693F6C /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F2729DC078800693F6C /* AddEventView.swift */; };
+		DAC93F2B29DC19D700693F6C /* ScheduleEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F2A29DC19D600693F6C /* ScheduleEvent.swift */; };
+		DAC93F3929DD32E400693F6C /* EventDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F3529DD32E400693F6C /* EventDetailRouter.swift */; };
+		DAC93F3A29DD32E400693F6C /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F3629DD32E400693F6C /* EventDetailViewController.swift */; };
+		DAC93F3B29DD32E400693F6C /* EventDetailBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F3729DD32E400693F6C /* EventDetailBuilder.swift */; };
+		DAC93F3C29DD32E400693F6C /* EventDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F3829DD32E400693F6C /* EventDetailInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +71,13 @@
 		DAC93F1C29DABA0F00693F6C /* TodoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
 		DAC93F1E29DABA9E00693F6C /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		DAC93F2129DBA70100693F6C /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
-		DAC93F2329DBBB3900693F6C /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
+		DAC93F2529DC00AA00693F6C /* EventsDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsDetailCell.swift; sourceTree = "<group>"; };
+		DAC93F2729DC078800693F6C /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
+		DAC93F2A29DC19D600693F6C /* ScheduleEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEvent.swift; sourceTree = "<group>"; };
+		DAC93F3529DD32E400693F6C /* EventDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailRouter.swift; sourceTree = "<group>"; };
+		DAC93F3629DD32E400693F6C /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
+		DAC93F3729DD32E400693F6C /* EventDetailBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailBuilder.swift; sourceTree = "<group>"; };
+		DAC93F3829DD32E400693F6C /* EventDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +133,7 @@
 		DAC93ED329DAB81000693F6C /* Manglendar */ = {
 			isa = PBXGroup;
 			children = (
+				DAC93F2929DC19C100693F6C /* Models */,
 				DAC93ED429DAB81000693F6C /* AppDelegate.swift */,
 				DAC93F1229DAB98300693F6C /* Schedular */,
 				DAC93ED829DAB81000693F6C /* ViewController.swift */,
@@ -163,9 +176,9 @@
 		DAC93F1B29DAB9FA00693F6C /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				DAC93F2C29DD32A500693F6C /* C */,
 				DAC93F2029DBA6EF00693F6C /* Calendar */,
 				DAC93F1C29DABA0F00693F6C /* TodoList.swift */,
-				DAC93F2329DBBB3900693F6C /* BottomSheetViewController.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -175,8 +188,29 @@
 			children = (
 				DAC93F1E29DABA9E00693F6C /* CalendarView.swift */,
 				DAC93F2129DBA70100693F6C /* CalendarCell.swift */,
+				DAC93F2529DC00AA00693F6C /* EventsDetailCell.swift */,
+				DAC93F2729DC078800693F6C /* AddEventView.swift */,
 			);
 			path = Calendar;
+			sourceTree = "<group>";
+		};
+		DAC93F2929DC19C100693F6C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DAC93F2A29DC19D600693F6C /* ScheduleEvent.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DAC93F2C29DD32A500693F6C /* C */ = {
+			isa = PBXGroup;
+			children = (
+				DAC93F3529DD32E400693F6C /* EventDetailRouter.swift */,
+				DAC93F3629DD32E400693F6C /* EventDetailViewController.swift */,
+				DAC93F3729DD32E400693F6C /* EventDetailBuilder.swift */,
+				DAC93F3829DD32E400693F6C /* EventDetailInteractor.swift */,
+			);
+			path = C;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,15 +356,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAC93F2B29DC19D700693F6C /* ScheduleEvent.swift in Sources */,
 				DAC93ED929DAB81000693F6C /* ViewController.swift in Sources */,
 				DAC93F1D29DABA0F00693F6C /* TodoList.swift in Sources */,
 				DAC93F1729DAB9C200693F6C /* SchedularRouter.swift in Sources */,
-				DAC93F2429DBBB3900693F6C /* BottomSheetViewController.swift in Sources */,
 				DAC93F1829DAB9C200693F6C /* SchedularViewController.swift in Sources */,
 				DAC93F2229DBA70100693F6C /* CalendarCell.swift in Sources */,
+				DAC93F3C29DD32E400693F6C /* EventDetailInteractor.swift in Sources */,
 				DAC93F1F29DABA9E00693F6C /* CalendarView.swift in Sources */,
+				DAC93F2829DC078800693F6C /* AddEventView.swift in Sources */,
 				DAC93F1929DAB9C200693F6C /* SchedularBuilder.swift in Sources */,
 				DAC93F1A29DAB9C200693F6C /* SchedularInteractor.swift in Sources */,
+				DAC93F2629DC00AA00693F6C /* EventsDetailCell.swift in Sources */,
+				DAC93F3929DD32E400693F6C /* EventDetailRouter.swift in Sources */,
+				DAC93F3B29DD32E400693F6C /* EventDetailBuilder.swift in Sources */,
+				DAC93F3A29DD32E400693F6C /* EventDetailViewController.swift in Sources */,
 				DAC93ED529DAB81000693F6C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -500,6 +540,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BPGXX3JG6H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Manglendar/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -528,6 +569,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BPGXX3JG6H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Manglendar/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

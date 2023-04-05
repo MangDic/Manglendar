@@ -14,7 +14,7 @@ import RxCocoa
 class CalendarView: UIView {
     var disposeBag = DisposeBag()
     
-    var selectedRelay = PublishRelay<Void>()
+    var selectedRelay = PublishRelay<[ScheduleEvent]>()
     
     private let daysPerWeek = 7
     private let totalGrids = 42
@@ -28,46 +28,7 @@ class CalendarView: UIView {
     private let months = Array(1...12)
     private let daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"]
     private var selectedDate: Date?
-    private var events: [Date: [String]] = [:]
-    
-    private lazy var addButton = UIButton().then {
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        $0.setTitle("일정 추가", for: .normal)
-        $0.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
-        $0.layer.cornerRadius = 4
-        $0.isHidden = true
-        $0.rx.tap.subscribe(onNext: { [weak self] in
-            guard let `self` = self else { return }
-            guard let selectedDate = self.selectedDate else { return }
-            
-            let alertController = UIAlertController(title: "이벤트 추가", message: "이벤트 이름을 입력하세요.", preferredStyle: .alert)
-            alertController.addTextField { (textField) in
-                textField.placeholder = "이벤트 이름"
-            }
-            
-            let saveAction = UIAlertAction(title: "저장", style: .default) { [weak alertController] (_) in
-                guard let eventName = alertController?.textFields?[0].text, !eventName.isEmpty else { return }
-                
-                if var eventsForDate = self.events[selectedDate] {
-                    eventsForDate.append(eventName)
-                    self.events[selectedDate] = eventsForDate
-                } else {
-                    self.events[selectedDate] = [eventName]
-                }
-                
-                self.gridView.reloadData()
-            }
-            
-            let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-            alertController.addAction(saveAction)
-            alertController.addAction(cancelAction)
-            
-            if let viewController = UIApplication.shared.windows.first?.rootViewController {
-                viewController.present(alertController, animated: true, completion: nil)
-            }
-            self.hideAddButton()
-        }).disposed(by: disposeBag)
-    }
+    var events: [String: [ScheduleEvent]] = [:]
     
     private lazy var monthLabel = UILabel().then {
         $0.textAlignment = .center
@@ -85,7 +46,6 @@ class CalendarView: UIView {
                 self.currentYear += 1
             }
             self.updateCalendar()
-            self.hideAddButton()
         }).disposed(by: disposeBag)
     }
     
@@ -100,7 +60,6 @@ class CalendarView: UIView {
                 self.currentYear -= 1
             }
             self.updateCalendar()
-            self.hideAddButton()
         }).disposed(by: disposeBag)
     }
     
@@ -129,7 +88,7 @@ class CalendarView: UIView {
         super.init(coder: coder)
     }
     
-    func setupDI(_ selectedRelay: PublishRelay<Void>) {
+    func setupDI(_ selectedRelay: PublishRelay<[ScheduleEvent]>) {
         self.selectedRelay.bind(to: selectedRelay).disposed(by: disposeBag)
     }
     
@@ -140,7 +99,6 @@ class CalendarView: UIView {
         addSubview(nextMonthButton)
         addSubview(daysOfWeekStackView)
         addSubview(gridView)
-        addSubview(addButton)
         initCalendar()
         
         monthLabel.snp.makeConstraints {
@@ -220,29 +178,9 @@ class CalendarView: UIView {
         }
     }
     
-    private func updateCalendar() {
+    func updateCalendar() {
         monthLabel.text = "\(currentYear)년 \(months[currentMonthIndex])월"
         gridView.reloadData()
-    }
-    
-    // 일정 추가 버튼 가리기
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        print("touchesBegan")
-        hideAddButton()
-    }
-    
-    private func showAddButton(cell: UIView) {
-        addButton.isHidden = false
-        addButton.snp.remakeConstraints {
-            $0.size.equalTo(CGSize(width: 70, height: 30))
-            $0.centerX.equalTo(cell)
-            $0.bottom.equalTo(cell.snp.top).offset(-5)
-        }
-    }
-    
-    private func hideAddButton() {
-        addButton.isHidden = true
     }
 }
 
@@ -257,11 +195,12 @@ extension CalendarView: UICollectionViewDataSource {
         let day = indexPath.item - firstDayOfMonth + 1
         if indexPath.item < firstDayOfMonth || day > daysInMonth[currentMonthIndex] {
             cell.configure(date: "")
-        } else {
+        }
+        else {
             cell.configure(date: "\(day)", isToday: isToday(year: currentYear, month: currentMonthIndex + 1, day: day))
             
-            let dateComponents = DateComponents(year: currentYear, month: currentMonthIndex + 1, day: day)
-            if let date = calendar.date(from: dateComponents), let events = events[date], !events.isEmpty {
+            let key = "\(currentYear)\(currentMonthIndex + 1)\(day)"
+            if let events = events[key], !events.isEmpty {
                 cell.addEvents(events)
             }
         }
@@ -284,11 +223,10 @@ extension CalendarView: UICollectionViewDataSource {
         if day > 0 && day <= daysInMonth[currentMonthIndex] {
             let selectedDateComponents = DateComponents(year: currentYear, month: currentMonthIndex + 1, day: day)
             selectedDate = calendar.date(from: selectedDateComponents)
-            showAddButton(cell: cell)
-            selectedRelay.accept(())
+            let event = events["\(currentYear)\(currentMonthIndex + 1)\(day)"] ?? []
+            selectedRelay.accept(event)
         } else {
             selectedDate = nil
-            hideAddButton()
         }
     }
     

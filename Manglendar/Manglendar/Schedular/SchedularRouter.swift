@@ -7,7 +7,7 @@
 
 import RIBs
 
-protocol SchedularInteractable: Interactable {
+protocol SchedularInteractable: Interactable, EventDetailListener {
     var router: SchedularRouting? { get set }
     var listener: SchedularListener? { get set }
 }
@@ -17,10 +17,20 @@ protocol SchedularViewControllable: ViewControllable {
 }
 
 final class SchedularRouter: ViewableRouter<SchedularInteractable, SchedularViewControllable>, SchedularRouting {
-
-    // TODO: Constructor inject child builder protocols to allow building children.
-    override init(interactor: SchedularInteractable, viewController: SchedularViewControllable) {
+    let eventDetailBuilder: EventDetailBuilder
+    
+    init(interactor: SchedularInteractable,
+         viewController: SchedularViewControllable,
+         eventDetailBuilder: EventDetailBuilder) {
+        self.eventDetailBuilder = eventDetailBuilder
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
+    }
+    
+    func navigateToDetailScreen(events: [ScheduleEvent]) {
+        let detailRouter = eventDetailBuilder.build(withListener: interactor)
+        attachChild(detailRouter)
+        let vc = detailRouter.viewControllable.uiviewController
+        viewController.uiviewController.present(vc, animated: true)
     }
 }

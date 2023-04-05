@@ -9,7 +9,7 @@ import RIBs
 import RxSwift
 
 protocol SchedularRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+    func navigateToDetailScreen(events: [ScheduleEvent])
 }
 
 protocol SchedularPresentable: Presentable {
@@ -22,7 +22,6 @@ protocol SchedularListener: AnyObject {
 }
 
 final class SchedularInteractor: PresentableInteractor<SchedularPresentable>, SchedularInteractable, SchedularPresentableListener {
-
     weak var router: SchedularRouting?
     weak var listener: SchedularListener?
 
@@ -41,5 +40,9 @@ final class SchedularInteractor: PresentableInteractor<SchedularPresentable>, Sc
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+    
+    func didTapCalendarCell(event: [ScheduleEvent]) {
+        router?.navigateToDetailScreen(events: event)
     }
 }

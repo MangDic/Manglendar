@@ -52,13 +52,13 @@ class CalendarCell: UICollectionViewCell {
     }
     
     func configure(date: String, isToday: Bool = false) {
-        dayLabel.text = date
+        dayLabel.text = isToday ? "오늘" : date
         contentStack.layer.borderColor = date == "" ? #colorLiteral(red: 0.9633767737, green: 0.9633767737, blue: 0.9633767737, alpha: 1) : #colorLiteral(red: 0.8794001822, green: 0.8794001822, blue: 0.8794001822, alpha: 1)
         contentStack.backgroundColor = date == "" ? #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0) : #colorLiteral(red: 0.9766330912, green: 0.9766330912, blue: 0.9766330912, alpha: 1)
         layer.borderColor = isToday ? #colorLiteral(red: 0.9584831547, green: 0.03299645901, blue: 0.402612538, alpha: 1) : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0)
     }
     
-    func addEvents(_ events: [String]) {
+    func addEvents(_ events: [ScheduleEvent]) {
         let colorArr = [#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1), #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1), #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1), #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)]
         moreDescriptionLabel.isHidden = events.count < 4
         
@@ -72,7 +72,7 @@ class CalendarCell: UICollectionViewCell {
             label.backgroundColor = colorArr[rand]
             label.textColor = .white
             label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-            label.text = event
+            label.text = event.title
             
             contentStack.addArrangedSubview(label)
             
