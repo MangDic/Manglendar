@@ -11,19 +11,23 @@ import RxSwift
 import UIKit
 
 protocol SchedularPresentableListener: AnyObject {
-    func didTapCalendarCell(event: [ScheduleEvent])
+    func didTapCalendarCell(date: Date)
+    func didTapAddEventButton()
+    var eventsRelay: BehaviorRelay<[String:[ScheduleEvent]]> { get }
 }
 
 final class SchedularViewController: UIViewController, SchedularPresentable, SchedularViewControllable {
     weak var listener: SchedularPresentableListener?
     
     var disposeBag = DisposeBag()
-    let selectedRelay = PublishRelay<[ScheduleEvent]>()
-    let addEventViewActionRelay = PublishRelay<AddEventViewAction>()
+    let selectedRelay = PublishRelay<Date>()
+    let reloadTrigger = PublishRelay<Void>()
+    
+    private var targetViewController: ViewControllable?
+    private var animationInProgress = false
     
     lazy var todoListView = TodoListView()
     lazy var calendarView = CalendarView()
-    lazy var addEventView = AddEventView()
     
     lazy var addEventButton = UIButton().then {
         $0.layer.cornerRadius = 30
@@ -32,7 +36,7 @@ final class SchedularViewController: UIViewController, SchedularPresentable, Sch
         $0.tintColor = .white
         $0.rx.tap.subscribe(onNext: { [weak self] in
             guard let `self` = self else { return }
-            self.showAddEventScreen()
+            self.listener?.didTapAddEventButton()
         }).disposed(by: disposeBag)
     }
     
@@ -44,6 +48,8 @@ final class SchedularViewController: UIViewController, SchedularPresentable, Sch
     }
     
     private func setupLayout() {
+        view.backgroundColor = .white
+        
         view.addSubview(todoListView)
         view.addSubview(calendarView)
         view.addSubview(addEventButton)
@@ -63,42 +69,45 @@ final class SchedularViewController: UIViewController, SchedularPresentable, Sch
         }
     }
     
-    private func showAddEventScreen() {
-        self.present(addEventView, animated: true)
+    private func bind() {
+        calendarView
+            .setupDI(listener?.eventsRelay)
+            .setupDI(selectedRelay)
+        
+        selectedRelay.subscribe(onNext: { [weak self] date in
+            guard let `self` = self else { return }
+            self.listener?.didTapCalendarCell(date: date)
+        }).disposed(by: disposeBag)
     }
     
-    private func bind() {
-        calendarView.setupDI(selectedRelay)
+    func replaceModal(viewController: ViewControllable?) {
+        targetViewController = viewController
         
-        addEventView.setupDI(addEventViewActionRelay)
+        guard !animationInProgress else {
+            return
+        }
         
-        selectedRelay.subscribe(onNext: { [weak self] event in
-            guard let `self` = self else { return }
-            self.listener?.didTapCalendarCell(event: event)
-        }).disposed(by: disposeBag)
-        
-//        addEventViewActionRelay.subscribe(onNext: { [weak self] event in
-//            guard let `self` = self else { return }
-//            switch event {
-//            case .save(let event):
-//                let eventDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: event.date)
-//                let year = eventDateComponents.year ?? 0
-//                let month = eventDateComponents.month ?? 0
-//                let day = eventDateComponents.day ?? 0
-//                
-//                let key = "\(year)\(month)\(day)"
-//                
-//                if self.calendarView.events[key] == nil {
-//                    self.calendarView.events[key] = [event.title]
-//                }
-//                else {
-//                    self.calendarView.events[key]!.append(event.title)
-//                }
-//                self.calendarView.updateCalendar()
-//            case .dismiss:
-//                print(" ")
-//            }
-//        }).disposed(by: disposeBag)
+        if presentedViewController != nil {
+            animationInProgress = true
+            dismiss(animated: true) { [weak self] in
+                if self?.targetViewController != nil {
+                    self?.presentTargetViewController()
+                } else {
+                    self?.animationInProgress = false
+                }
+            }
+        } else {
+            presentTargetViewController()
+        }
+    }
+    
+    private func presentTargetViewController() {
+        if let targetViewController = targetViewController {
+            animationInProgress = true
+            present(targetViewController.uiviewController, animated: true) { [weak self] in
+                self?.animationInProgress = false
+            }
+        }
     }
 }
 

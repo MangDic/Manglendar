@@ -7,7 +7,7 @@
 
 import RIBs
 
-protocol SchedularDependency: Dependency, EventDetailDependency {
+protocol SchedularDependency: Dependency, EventDetailDependency, AddEventDependency {
     // TODO: Declare the set of dependencies required by this RIB, but cannot be
     // created by this RIB.
 }
@@ -20,7 +20,7 @@ final class SchedularComponent: Component<SchedularDependency> {
 // MARK: - Builder
 
 protocol SchedularBuildable: Buildable {
-    func build(withListener listener: SchedularListener) -> SchedularRouting
+    func build() -> SchedularRouting
 }
 
 final class SchedularBuilder: Builder<SchedularDependency>, SchedularBuildable {
@@ -29,15 +29,17 @@ final class SchedularBuilder: Builder<SchedularDependency>, SchedularBuildable {
         super.init(dependency: dependency)
     }
 
-    func build(withListener listener: SchedularListener) -> SchedularRouting {
+    func build() -> SchedularRouting {
         let component = SchedularComponent(dependency: dependency)
         let viewController = SchedularViewController()
         let interactor = SchedularInteractor(presenter: viewController)
-        interactor.listener = listener
         
         let eventDetailBuilder = EventDetailBuilder(dependency: dependency)
+        let addEventBuilder = AddEventBuilder(dependency: dependency)
+        
         return SchedularRouter(interactor: interactor,
                                viewController: viewController,
-                               eventDetailBuilder: eventDetailBuilder)
+                               eventDetailBuilder: eventDetailBuilder,
+                               addEventBuilder: addEventBuilder)
     }
 }

@@ -14,7 +14,8 @@ import RxCocoa
 class CalendarView: UIView {
     var disposeBag = DisposeBag()
     
-    var selectedRelay = PublishRelay<[ScheduleEvent]>()
+    var selectedRelay = PublishRelay<Date>()
+    var eventsRelay = BehaviorRelay<[String:[ScheduleEvent]]>(value: [:])
     
     private let daysPerWeek = 7
     private let totalGrids = 42
@@ -79,20 +80,27 @@ class CalendarView: UIView {
         $0.delegate = self
     }
     
+    // MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupView()
+        setupLayout()
+        bind()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    func setupDI(_ selectedRelay: PublishRelay<[ScheduleEvent]>) {
+    func setupDI(_ eventsRelay: BehaviorRelay<[String:[ScheduleEvent]]>?) -> Self {
+        eventsRelay?.bind(to: self.eventsRelay).disposed(by: disposeBag)
+        return self
+    }
+    
+    func setupDI(_ selectedRelay: PublishRelay<Date>) {
         self.selectedRelay.bind(to: selectedRelay).disposed(by: disposeBag)
     }
     
-    private func setupView() {
+    private func setupLayout() {
         let daysOfWeekStackView = createDayOfWeekLabels()
         addSubview(prevMonthButton)
         addSubview(monthLabel)
@@ -128,6 +136,14 @@ class CalendarView: UIView {
             $0.top.equalTo(daysOfWeekStackView.snp.bottom)
             $0.leading.bottom.trailing.equalTo(safeAreaLayoutGuide).inset(20)
         }
+    }
+    
+    private func bind(){
+        eventsRelay.subscribe(onNext: { [weak self] events in
+            guard let `self` = self else { return }
+            self.events = events
+            self.gridView.reloadData()
+        }).disposed(by: disposeBag)
     }
     
     private func createDayOfWeekLabels() -> UIStackView {
@@ -223,8 +239,7 @@ extension CalendarView: UICollectionViewDataSource {
         if day > 0 && day <= daysInMonth[currentMonthIndex] {
             let selectedDateComponents = DateComponents(year: currentYear, month: currentMonthIndex + 1, day: day)
             selectedDate = calendar.date(from: selectedDateComponents)
-            let event = events["\(currentYear)\(currentMonthIndex + 1)\(day)"] ?? []
-            selectedRelay.accept(event)
+            selectedRelay.accept(selectedDate!)
         } else {
             selectedDate = nil
         }

@@ -6,30 +6,37 @@
 //
 
 import RIBs
+import RxCocoa
 import RxSwift
+import Foundation
 
 protocol SchedularRouting: ViewableRouting {
     func navigateToDetailScreen(events: [ScheduleEvent])
+    func navigateToAddEventScreen()
+    func routeToAddEventScreen()
 }
 
 protocol SchedularPresentable: Presentable {
     var listener: SchedularPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
 protocol SchedularListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
 final class SchedularInteractor: PresentableInteractor<SchedularPresentable>, SchedularInteractable, SchedularPresentableListener {
+    var eventsRelay = BehaviorRelay<[String : [ScheduleEvent]]>(value: [:])
+    
     weak var router: SchedularRouting?
     weak var listener: SchedularListener?
+    
+    var events = [String:[ScheduleEvent]]()
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
     override init(presenter: SchedularPresentable) {
         super.init(presenter: presenter)
         presenter.listener = self
+        loadEvents()
     }
 
     override func didBecomeActive() {
@@ -42,7 +49,31 @@ final class SchedularInteractor: PresentableInteractor<SchedularPresentable>, Sc
         // TODO: Pause any business logic.
     }
     
-    func didTapCalendarCell(event: [ScheduleEvent]) {
-        router?.navigateToDetailScreen(events: event)
+    func didTapCalendarCell(date: Date) {
+        let key = date.convertStringKey()
+        router?.navigateToDetailScreen(events: events[key] == nil ? [] : events[key]!)
+    }
+    
+    func didTapAddEventButton() {
+        router?.navigateToAddEventScreen()
+    }
+    
+    func routeToAddEventScreen() {
+        router?.routeToAddEventScreen()
+    }
+    
+    func addEvent(event: ScheduleEvent) {
+        let key = event.date.convertStringKey()
+        if events[key] == nil {
+            events[key] = [event]
+        }
+        else {
+            events[key]!.append(event)
+        }
+        eventsRelay.accept(events)
+    }
+    
+    private func loadEvents() {
+        
     }
 }

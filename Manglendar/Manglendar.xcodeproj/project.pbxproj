@@ -27,12 +27,21 @@
 		DAC93F1F29DABA9E00693F6C /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F1E29DABA9E00693F6C /* CalendarView.swift */; };
 		DAC93F2229DBA70100693F6C /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F2129DBA70100693F6C /* CalendarCell.swift */; };
 		DAC93F2629DC00AA00693F6C /* EventsDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F2529DC00AA00693F6C /* EventsDetailCell.swift */; };
-		DAC93F2829DC078800693F6C /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F2729DC078800693F6C /* AddEventView.swift */; };
 		DAC93F2B29DC19D700693F6C /* ScheduleEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F2A29DC19D600693F6C /* ScheduleEvent.swift */; };
 		DAC93F3929DD32E400693F6C /* EventDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F3529DD32E400693F6C /* EventDetailRouter.swift */; };
 		DAC93F3A29DD32E400693F6C /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F3629DD32E400693F6C /* EventDetailViewController.swift */; };
 		DAC93F3B29DD32E400693F6C /* EventDetailBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F3729DD32E400693F6C /* EventDetailBuilder.swift */; };
 		DAC93F3C29DD32E400693F6C /* EventDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F3829DD32E400693F6C /* EventDetailInteractor.swift */; };
+		DAC93F4229DD445E00693F6C /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F3E29DD445E00693F6C /* RootRouter.swift */; };
+		DAC93F4329DD445E00693F6C /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F3F29DD445E00693F6C /* RootViewController.swift */; };
+		DAC93F4429DD445E00693F6C /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F4029DD445E00693F6C /* RootBuilder.swift */; };
+		DAC93F4529DD445E00693F6C /* RootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F4129DD445E00693F6C /* RootInteractor.swift */; };
+		DAC93F4729DD44CE00693F6C /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F4629DD44CE00693F6C /* AppComponent.swift */; };
+		DAC93F4D29DD4BA600693F6C /* AddEventRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F4929DD4BA600693F6C /* AddEventRouter.swift */; };
+		DAC93F4E29DD4BA600693F6C /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F4A29DD4BA600693F6C /* AddEventViewController.swift */; };
+		DAC93F4F29DD4BA600693F6C /* AddEventBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F4B29DD4BA600693F6C /* AddEventBuilder.swift */; };
+		DAC93F5029DD4BA600693F6C /* AddEventInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F4C29DD4BA600693F6C /* AddEventInteractor.swift */; };
+		DAC93F5329DD61F500693F6C /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F5229DD61F500693F6C /* Date+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,12 +81,21 @@
 		DAC93F1E29DABA9E00693F6C /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		DAC93F2129DBA70100693F6C /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		DAC93F2529DC00AA00693F6C /* EventsDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsDetailCell.swift; sourceTree = "<group>"; };
-		DAC93F2729DC078800693F6C /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
 		DAC93F2A29DC19D600693F6C /* ScheduleEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEvent.swift; sourceTree = "<group>"; };
 		DAC93F3529DD32E400693F6C /* EventDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailRouter.swift; sourceTree = "<group>"; };
 		DAC93F3629DD32E400693F6C /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		DAC93F3729DD32E400693F6C /* EventDetailBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailBuilder.swift; sourceTree = "<group>"; };
 		DAC93F3829DD32E400693F6C /* EventDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailInteractor.swift; sourceTree = "<group>"; };
+		DAC93F3E29DD445E00693F6C /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
+		DAC93F3F29DD445E00693F6C /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		DAC93F4029DD445E00693F6C /* RootBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
+		DAC93F4129DD445E00693F6C /* RootInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootInteractor.swift; sourceTree = "<group>"; };
+		DAC93F4629DD44CE00693F6C /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
+		DAC93F4929DD4BA600693F6C /* AddEventRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventRouter.swift; sourceTree = "<group>"; };
+		DAC93F4A29DD4BA600693F6C /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
+		DAC93F4B29DD4BA600693F6C /* AddEventBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventBuilder.swift; sourceTree = "<group>"; };
+		DAC93F4C29DD4BA600693F6C /* AddEventInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventInteractor.swift; sourceTree = "<group>"; };
+		DAC93F5229DD61F500693F6C /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,13 +151,16 @@
 		DAC93ED329DAB81000693F6C /* Manglendar */ = {
 			isa = PBXGroup;
 			children = (
+				DAC93F5129DD61E800693F6C /* Extensions */,
 				DAC93F2929DC19C100693F6C /* Models */,
 				DAC93ED429DAB81000693F6C /* AppDelegate.swift */,
+				DAC93F3D29DD445400693F6C /* Root */,
 				DAC93F1229DAB98300693F6C /* Schedular */,
 				DAC93ED829DAB81000693F6C /* ViewController.swift */,
 				DAC93EDD29DAB81300693F6C /* Assets.xcassets */,
 				DAC93EDF29DAB81300693F6C /* LaunchScreen.storyboard */,
 				DAC93EE229DAB81300693F6C /* Info.plist */,
+				DAC93F4629DD44CE00693F6C /* AppComponent.swift */,
 			);
 			path = Manglendar;
 			sourceTree = "<group>";
@@ -176,7 +197,8 @@
 		DAC93F1B29DAB9FA00693F6C /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
-				DAC93F2C29DD32A500693F6C /* C */,
+				DAC93F4829DD4B1800693F6C /* AddEvent */,
+				DAC93F2C29DD32A500693F6C /* EventDetail */,
 				DAC93F2029DBA6EF00693F6C /* Calendar */,
 				DAC93F1C29DABA0F00693F6C /* TodoList.swift */,
 			);
@@ -188,8 +210,6 @@
 			children = (
 				DAC93F1E29DABA9E00693F6C /* CalendarView.swift */,
 				DAC93F2129DBA70100693F6C /* CalendarCell.swift */,
-				DAC93F2529DC00AA00693F6C /* EventsDetailCell.swift */,
-				DAC93F2729DC078800693F6C /* AddEventView.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -202,15 +222,46 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		DAC93F2C29DD32A500693F6C /* C */ = {
+		DAC93F2C29DD32A500693F6C /* EventDetail */ = {
 			isa = PBXGroup;
 			children = (
 				DAC93F3529DD32E400693F6C /* EventDetailRouter.swift */,
 				DAC93F3629DD32E400693F6C /* EventDetailViewController.swift */,
 				DAC93F3729DD32E400693F6C /* EventDetailBuilder.swift */,
 				DAC93F3829DD32E400693F6C /* EventDetailInteractor.swift */,
+				DAC93F2529DC00AA00693F6C /* EventsDetailCell.swift */,
 			);
-			path = C;
+			path = EventDetail;
+			sourceTree = "<group>";
+		};
+		DAC93F3D29DD445400693F6C /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				DAC93F3E29DD445E00693F6C /* RootRouter.swift */,
+				DAC93F3F29DD445E00693F6C /* RootViewController.swift */,
+				DAC93F4029DD445E00693F6C /* RootBuilder.swift */,
+				DAC93F4129DD445E00693F6C /* RootInteractor.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		DAC93F4829DD4B1800693F6C /* AddEvent */ = {
+			isa = PBXGroup;
+			children = (
+				DAC93F4929DD4BA600693F6C /* AddEventRouter.swift */,
+				DAC93F4A29DD4BA600693F6C /* AddEventViewController.swift */,
+				DAC93F4B29DD4BA600693F6C /* AddEventBuilder.swift */,
+				DAC93F4C29DD4BA600693F6C /* AddEventInteractor.swift */,
+			);
+			path = AddEvent;
+			sourceTree = "<group>";
+		};
+		DAC93F5129DD61E800693F6C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DAC93F5229DD61F500693F6C /* Date+.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,17 +407,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAC93F4E29DD4BA600693F6C /* AddEventViewController.swift in Sources */,
 				DAC93F2B29DC19D700693F6C /* ScheduleEvent.swift in Sources */,
 				DAC93ED929DAB81000693F6C /* ViewController.swift in Sources */,
+				DAC93F4729DD44CE00693F6C /* AppComponent.swift in Sources */,
+				DAC93F4329DD445E00693F6C /* RootViewController.swift in Sources */,
 				DAC93F1D29DABA0F00693F6C /* TodoList.swift in Sources */,
+				DAC93F4D29DD4BA600693F6C /* AddEventRouter.swift in Sources */,
+				DAC93F5329DD61F500693F6C /* Date+.swift in Sources */,
 				DAC93F1729DAB9C200693F6C /* SchedularRouter.swift in Sources */,
 				DAC93F1829DAB9C200693F6C /* SchedularViewController.swift in Sources */,
 				DAC93F2229DBA70100693F6C /* CalendarCell.swift in Sources */,
+				DAC93F4429DD445E00693F6C /* RootBuilder.swift in Sources */,
 				DAC93F3C29DD32E400693F6C /* EventDetailInteractor.swift in Sources */,
 				DAC93F1F29DABA9E00693F6C /* CalendarView.swift in Sources */,
-				DAC93F2829DC078800693F6C /* AddEventView.swift in Sources */,
+				DAC93F4229DD445E00693F6C /* RootRouter.swift in Sources */,
 				DAC93F1929DAB9C200693F6C /* SchedularBuilder.swift in Sources */,
 				DAC93F1A29DAB9C200693F6C /* SchedularInteractor.swift in Sources */,
+				DAC93F4529DD445E00693F6C /* RootInteractor.swift in Sources */,
+				DAC93F5029DD4BA600693F6C /* AddEventInteractor.swift in Sources */,
+				DAC93F4F29DD4BA600693F6C /* AddEventBuilder.swift in Sources */,
 				DAC93F2629DC00AA00693F6C /* EventsDetailCell.swift in Sources */,
 				DAC93F3929DD32E400693F6C /* EventDetailRouter.swift in Sources */,
 				DAC93F3B29DD32E400693F6C /* EventDetailBuilder.swift in Sources */,

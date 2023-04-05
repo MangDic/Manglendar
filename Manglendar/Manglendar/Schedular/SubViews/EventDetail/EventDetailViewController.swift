@@ -11,7 +11,8 @@ import RxCocoa
 import RxSwift
 
 protocol EventDetailPresentableListener: AnyObject {
-    var eventsRelay: PublishRelay<[ScheduleEvent]> { get }
+    var eventsRelay: BehaviorRelay<[ScheduleEvent]> { get }
+    func didTapAddButton()
 }
 
 final class EventDetailViewController: UIViewController, EventDetailPresentable, EventDetailViewControllable {
@@ -33,26 +34,28 @@ final class EventDetailViewController: UIViewController, EventDetailPresentable,
     }
     
     lazy var tableView = UITableView().then {
-        $0.rowHeight = 80
+        $0.separatorStyle = .none
         $0.isHidden = true
-        $0.estimatedRowHeight = UITableView.automaticDimension
+        $0.rowHeight = UITableView.automaticDimension
         $0.register(EventsDetailCell.self, forCellReuseIdentifier: EventsDetailCell.id)
     }
     
     lazy var addEventButton = UIButton().then {
         $0.setTitle("일정 추가", for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         $0.layer.cornerRadius = 8
         $0.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
         $0.rx.tap.subscribe(onNext: { [weak self] in
             guard let `self` = self else { return }
-            
+            self.listener?.didTapAddButton()
         }).disposed(by: disposeBag)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupLayout()
+        bind()
     }
     
     private func setupLayout() {
@@ -69,8 +72,8 @@ final class EventDetailViewController: UIViewController, EventDetailPresentable,
         }
         
         tableView.snp.makeConstraints {
-            $0.leading.top.trailing.equalToSuperview()
-            $0.height.equalTo(400)
+            $0.leading.top.trailing.equalToSuperview().inset(20)
+            $0.height.equalTo(100)
         }
         
         addEventButton.snp.makeConstraints {
@@ -88,6 +91,7 @@ final class EventDetailViewController: UIViewController, EventDetailPresentable,
     private func bind() {
         listener?.eventsRelay.bind(to: tableView.rx.items(cellIdentifier: EventsDetailCell.id)) { row, item, cell in
             guard let cell = cell as? EventsDetailCell else { return }
+            cell.selectionStyle = .none
             cell.configure(data: item)
         }.disposed(by: disposeBag)
         
@@ -96,5 +100,16 @@ final class EventDetailViewController: UIViewController, EventDetailPresentable,
             self.emptyDescriptionLabel.isHidden = data.count != 0
             self.tableView.isHidden = data.count == 0
         }).disposed(by: disposeBag)
+    }
+    // 동적 테이블뷰 높이 업데이트
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        let h = tableView.contentSize.height
+        if h != 0 {
+            tableView.snp.updateConstraints {
+                $0.height.equalTo(h)
+            }
+        }
     }
 }

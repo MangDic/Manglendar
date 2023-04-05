@@ -12,9 +12,7 @@ protocol EventDetailInteractable: Interactable {
     var listener: EventDetailListener? { get set }
 }
 
-protocol EventDetailViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
-}
+protocol EventDetailViewControllable: ViewControllable { }
 
 final class EventDetailRouter: ViewableRouter<EventDetailInteractable, EventDetailViewControllable>, EventDetailRouting {
 

@@ -1,23 +1,24 @@
 //
-//  AddEventView.swift
+//  AddEventViewController.swift
 //  Manglendar
 //
-//  Created by 이명직 on 2023/04/04.
+//  Created by 이명직 on 2023/04/05.
 //
 
 import UIKit
 import RxCocoa
+import RIBs
 import RxSwift
 
-enum AddEventViewAction {
-    case save(event: ScheduleEvent)
-    case dismiss
+protocol AddEventPresentableListener: AnyObject {
+    func didTapSaveButton(scheduleEvent: ScheduleEvent)
 }
 
-class AddEventView: UIViewController {
-    var disposeBag = DisposeBag()
+final class AddEventViewController: UIViewController, AddEventPresentable, AddEventViewControllable {
+
+    weak var listener: AddEventPresentableListener?
     
-    let actionRelay = PublishRelay<AddEventViewAction>()
+    var disposeBag = DisposeBag()
     
     lazy var contentView = UIView().then {
         $0.backgroundColor = .white
@@ -48,7 +49,7 @@ class AddEventView: UIViewController {
         $0.rx.tap.subscribe(onNext: { [weak self] in
             guard let `self` = self else { return }
             self.dismiss(animated: true)
-            self.actionRelay.accept(.dismiss)
+            
         }).disposed(by: disposeBag)
     }
     
@@ -59,9 +60,10 @@ class AddEventView: UIViewController {
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         $0.rx.tap.subscribe(onNext: { [weak self] in
             guard let `self` = self else { return }
-            self.actionRelay.accept(.save(event: ScheduleEvent(title: self.titleField.text ?? "",
-                                                               date: self.datePicker.date,
-                                                               color: " ")))
+            let event = ScheduleEvent(title: self.titleField.text ?? "",
+                                      date: self.datePicker.date,
+                                      color: " ")
+            self.listener?.didTapSaveButton(scheduleEvent: event)
             self.dismiss(animated: true)
         }).disposed(by: disposeBag)
     }
@@ -75,10 +77,6 @@ class AddEventView: UIViewController {
         super.viewWillAppear(animated)
         
         self.clearData()
-    }
-    
-    func setupDI(_ actionRelay: PublishRelay<AddEventViewAction>) {
-        self.actionRelay.bind(to: actionRelay).disposed(by: disposeBag)
     }
     
     private func setupLayout() {

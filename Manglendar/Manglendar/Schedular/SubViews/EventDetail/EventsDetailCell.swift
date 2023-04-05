@@ -40,11 +40,12 @@ class EventsDetailCell: UITableViewCell {
         containerView.addSubview(titleLabel)
         
         containerView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(10)
+            $0.top.bottom.equalToSuperview().inset(10)
+            $0.leading.trailing.equalToSuperview()
         }
         
         titleLabel.snp.makeConstraints {
-            $0.leading.top.trailing.equalToSuperview().inset(10)
+            $0.edges.equalToSuperview().inset(10)
         }
     }
 }
