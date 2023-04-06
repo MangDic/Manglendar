@@ -10,17 +10,17 @@ import UIKit
 class CalendarCell: UICollectionViewCell {
     static let identifier = "CalendarCell"
     
+    lazy var contentStack = UIStackView().then {
+        $0.spacing = 3
+        $0.axis = .vertical
+        $0.distribution = .fillEqually
+    }
+    
     lazy var dayLabel = UILabel().then {
         $0.textAlignment = .center
         $0.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         $0.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.7304589095, blue: 0.6792636578, alpha: 1)
         $0.textColor = .white
-    }
-    
-    lazy var contentStack = UIStackView().then {
-        $0.spacing = 3
-        $0.axis = .vertical
-        $0.distribution = .fillEqually
     }
     
     lazy var moreDescriptionLabel = UILabel().then {

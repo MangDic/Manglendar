@@ -32,6 +32,7 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
     }
     
     lazy var datePicker = UIDatePicker().then {
+        $0.tintColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
         $0.preferredDatePickerStyle = .inline
         $0.datePickerMode = .date
     }
@@ -113,5 +114,11 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
     
     private func clearData() {
         self.titleField.text = nil
+    }
+    
+    func updatePickerDate(date: Date?) {
+        if let date = date {
+            datePicker.date = date
+        }
     }
 }

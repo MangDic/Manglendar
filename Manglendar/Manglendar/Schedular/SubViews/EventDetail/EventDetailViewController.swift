@@ -26,6 +26,12 @@ final class EventDetailViewController: UIViewController, EventDetailPresentable,
         $0.backgroundColor = .white
     }
     
+    lazy var dateLabel = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        $0.textAlignment = .center
+        $0.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+    }
+    
     lazy var emptyDescriptionLabel = UILabel().then {
         $0.text = "일정이 없습니다 :("
         $0.textColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
@@ -36,6 +42,7 @@ final class EventDetailViewController: UIViewController, EventDetailPresentable,
     lazy var tableView = UITableView().then {
         $0.separatorStyle = .none
         $0.isHidden = true
+        $0.isScrollEnabled = false
         $0.rowHeight = UITableView.automaticDimension
         $0.register(EventsDetailCell.self, forCellReuseIdentifier: EventsDetailCell.id)
     }
@@ -62,6 +69,7 @@ final class EventDetailViewController: UIViewController, EventDetailPresentable,
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7016903707)
         view.addSubview(contentView)
         
+        contentView.addSubview(dateLabel)
         contentView.addSubview(tableView)
         contentView.addSubview(addEventButton)
         contentView.addSubview(emptyDescriptionLabel)
@@ -71,8 +79,13 @@ final class EventDetailViewController: UIViewController, EventDetailPresentable,
             $0.bottom.centerX.equalToSuperview()
         }
         
-        tableView.snp.makeConstraints {
+        dateLabel.snp.makeConstraints {
             $0.leading.top.trailing.equalToSuperview().inset(20)
+        }
+        
+        tableView.snp.makeConstraints {
+            $0.top.equalTo(dateLabel.snp.bottom).offset(15)
+            $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(100)
         }
         
@@ -101,6 +114,7 @@ final class EventDetailViewController: UIViewController, EventDetailPresentable,
             self.tableView.isHidden = data.count == 0
         }).disposed(by: disposeBag)
     }
+    
     // 동적 테이블뷰 높이 업데이트
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -111,5 +125,9 @@ final class EventDetailViewController: UIViewController, EventDetailPresentable,
                 $0.height.equalTo(h)
             }
         }
+    }
+    
+    func setDateLabel(date: Date) {
+        dateLabel.text = date.convertDateToTitle()
     }
 }

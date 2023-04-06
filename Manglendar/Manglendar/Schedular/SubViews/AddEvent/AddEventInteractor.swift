@@ -7,6 +7,7 @@
 
 import RIBs
 import RxSwift
+import Foundation
 
 protocol AddEventRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -14,7 +15,7 @@ protocol AddEventRouting: ViewableRouting {
 
 protocol AddEventPresentable: Presentable {
     var listener: AddEventPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
+    func updatePickerDate(date: Date?)
 }
 
 protocol AddEventListener: AnyObject {
@@ -26,16 +27,18 @@ final class AddEventInteractor: PresentableInteractor<AddEventPresentable>, AddE
     weak var router: AddEventRouting?
     weak var listener: AddEventListener?
 
+    let component: AddEventComponent
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init(presenter: AddEventPresentable) {
+    init(presenter: AddEventPresentable, component: AddEventComponent) {
+        self.component = component
         super.init(presenter: presenter)
         presenter.listener = self
     }
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
+        presenter.updatePickerDate(date: component.date)
     }
 
     override func willResignActive() {

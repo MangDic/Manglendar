@@ -13,13 +13,28 @@ class EventsDetailCell: UITableViewCell {
     static let id = "EventsDetailCell"
     
     lazy var containerView = UIView().then {
-        $0.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
+        $0.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.7978581524, blue: 0.7656132604, alpha: 1)
         $0.layer.cornerRadius = 8
     }
     
     lazy var titleLabel = UILabel().then {
+        $0.textAlignment = .left
         $0.textColor = .white
         $0.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+    }
+    
+    lazy var placeLabel = UILabel().then {
+        $0.textAlignment = .left
+        $0.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        $0.textColor = .white
+        $0.text = "장소 : 등록한 장소가 없습니다."
+    }
+    
+    lazy var timeLabel = UILabel().then {
+        $0.textAlignment = .left
+        $0.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        $0.textColor = .white
+        $0.text = "시간 : 등록한 시간이 없습니다."
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -38,6 +53,8 @@ class EventsDetailCell: UITableViewCell {
     private func setupLayout() {
         contentView.addSubview(containerView)
         containerView.addSubview(titleLabel)
+        containerView.addSubview(placeLabel)
+        containerView.addSubview(timeLabel)
         
         containerView.snp.makeConstraints {
             $0.top.bottom.equalToSuperview().inset(10)
@@ -45,7 +62,17 @@ class EventsDetailCell: UITableViewCell {
         }
         
         titleLabel.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(10)
+            $0.leading.top.trailing.equalToSuperview().inset(10)
+        }
+        
+        placeLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(10)
+            $0.leading.trailing.equalToSuperview().inset(10)
+        }
+        
+        timeLabel.snp.makeConstraints {
+            $0.top.equalTo(placeLabel.snp.bottom).offset(10)
+            $0.leading.bottom.trailing.equalToSuperview().inset(10)
         }
     }
 }

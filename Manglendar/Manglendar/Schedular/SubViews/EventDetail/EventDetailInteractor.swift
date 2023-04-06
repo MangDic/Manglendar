@@ -5,6 +5,7 @@
 //  Created by 이명직 on 2023/04/05.
 //
 
+import Foundation
 import RIBs
 import RxCocoa
 import RxSwift
@@ -14,11 +15,11 @@ protocol EventDetailRouting: ViewableRouting {
 
 protocol EventDetailPresentable: Presentable {
     var listener: EventDetailPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
+    func setDateLabel(date: Date)
 }
 
 protocol EventDetailListener: AnyObject {
-    func routeToAddEventScreen()
+    func routeToAddEventScreen(date: Date?)
 }
 
 final class EventDetailInteractor: PresentableInteractor<EventDetailPresentable>, EventDetailInteractable, EventDetailPresentableListener {
@@ -38,6 +39,7 @@ final class EventDetailInteractor: PresentableInteractor<EventDetailPresentable>
     override func didBecomeActive() {
         super.didBecomeActive()
         eventsRelay.accept(component.events)
+        presenter.setDateLabel(date: component.date)
     }
     
     override func willResignActive() {
@@ -46,6 +48,6 @@ final class EventDetailInteractor: PresentableInteractor<EventDetailPresentable>
     }
     
     func didTapAddButton() {
-        listener?.routeToAddEventScreen()
+        listener?.routeToAddEventScreen(date: component.date)
     }
 }

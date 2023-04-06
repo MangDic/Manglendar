@@ -6,15 +6,17 @@
 //
 
 import RIBs
+import Foundation
 
 protocol EventDetailDependency: Dependency {
 }
 
 final class EventDetailComponent: Component<EventDetailDependency> {
     let events: [ScheduleEvent]
-    
-    init(dependency: EventDetailDependency, events: [ScheduleEvent]) {
+    let date: Date
+    init(dependency: EventDetailDependency, events: [ScheduleEvent], date: Date) {
         self.events = events
+        self.date = date
         super.init(dependency: dependency)
     }
 }
@@ -22,7 +24,7 @@ final class EventDetailComponent: Component<EventDetailDependency> {
 // MARK: - Builder
 
 protocol EventDetailBuildable: Buildable {
-    func build(withListener listener: EventDetailListener, events: [ScheduleEvent]) -> EventDetailRouting
+    func build(withListener listener: EventDetailListener, events: [ScheduleEvent], date: Date) -> EventDetailRouting
 }
 
 final class EventDetailBuilder: Builder<EventDetailDependency>, EventDetailBuildable {
@@ -31,9 +33,10 @@ final class EventDetailBuilder: Builder<EventDetailDependency>, EventDetailBuild
         super.init(dependency: dependency)
     }
     
-    func build(withListener listener: EventDetailListener, events: [ScheduleEvent]) -> EventDetailRouting {
+    func build(withListener listener: EventDetailListener, events: [ScheduleEvent], date: Date) -> EventDetailRouting {
         let component = EventDetailComponent(dependency: dependency,
-                                             events: events)
+                                             events: events,
+                                             date: date)
         let viewController = EventDetailViewController()
         let interactor = EventDetailInteractor(presenter: viewController,
                                                component: component)

@@ -6,6 +6,7 @@
 //
 
 import RIBs
+import Foundation
 
 protocol SchedularInteractable: Interactable, EventDetailListener, AddEventListener {
     var router: SchedularRouting? { get set }
@@ -32,23 +33,24 @@ final class SchedularRouter: ViewableRouter<SchedularInteractable, SchedularView
         interactor.router = self
     }
     
-    func routeToAddEventScreen() {
+    func routeToAddEventScreen(date: Date?) {
         detachCurrentChild()
-        navigateToAddEventScreen()
+        navigateToAddEventScreen(date: date)
     }
     
-    func navigateToDetailScreen(events: [ScheduleEvent]) {
+    func navigateToDetailScreen(events: [ScheduleEvent], date: Date) {
         detachCurrentChild()
         let detailRouter = eventDetailBuilder.build(withListener: interactor,
-                                                    events: events)
+                                                    events: events,
+                                                    date: date)
         attachChild(detailRouter)
         viewController.replaceModal(viewController: detailRouter.viewControllable)
         currentChild = detailRouter
     }
 
-    func navigateToAddEventScreen() {
+    func navigateToAddEventScreen(date: Date?) {
         detachCurrentChild()
-        let addEventRouter = addEventBuilder.build(withListener: interactor)
+        let addEventRouter = addEventBuilder.build(withListener: interactor, date: date)
         attachChild(addEventRouter)
         viewController.replaceModal(viewController: addEventRouter.viewControllable)
         currentChild = addEventRouter

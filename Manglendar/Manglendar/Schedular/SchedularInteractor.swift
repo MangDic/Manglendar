@@ -11,9 +11,9 @@ import RxSwift
 import Foundation
 
 protocol SchedularRouting: ViewableRouting {
-    func navigateToDetailScreen(events: [ScheduleEvent])
-    func navigateToAddEventScreen()
-    func routeToAddEventScreen()
+    func navigateToDetailScreen(events: [ScheduleEvent], date: Date)
+    func navigateToAddEventScreen(date: Date?)
+    func routeToAddEventScreen(date: Date?)
 }
 
 protocol SchedularPresentable: Presentable {
@@ -51,15 +51,15 @@ final class SchedularInteractor: PresentableInteractor<SchedularPresentable>, Sc
     
     func didTapCalendarCell(date: Date) {
         let key = date.convertStringKey()
-        router?.navigateToDetailScreen(events: events[key] == nil ? [] : events[key]!)
+        router?.navigateToDetailScreen(events: events[key] == nil ? [] : events[key]!, date: date)
     }
     
     func didTapAddEventButton() {
-        router?.navigateToAddEventScreen()
+        router?.navigateToAddEventScreen(date: nil)
     }
     
-    func routeToAddEventScreen() {
-        router?.routeToAddEventScreen()
+    func routeToAddEventScreen(date: Date?) {
+        router?.routeToAddEventScreen(date: date)
     }
     
     func addEvent(event: ScheduleEvent) {

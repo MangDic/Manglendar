@@ -6,6 +6,7 @@
 //
 
 import RIBs
+import Foundation
 
 protocol AddEventDependency: Dependency {
     // TODO: Declare the set of dependencies required by this RIB, but cannot be
@@ -13,14 +14,13 @@ protocol AddEventDependency: Dependency {
 }
 
 final class AddEventComponent: Component<AddEventDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+    var date: Date?
 }
 
 // MARK: - Builder
 
 protocol AddEventBuildable: Buildable {
-    func build(withListener listener: AddEventListener) -> AddEventRouting
+    func build(withListener listener: AddEventListener, date: Date?) -> AddEventRouting
 }
 
 final class AddEventBuilder: Builder<AddEventDependency>, AddEventBuildable {
@@ -29,10 +29,12 @@ final class AddEventBuilder: Builder<AddEventDependency>, AddEventBuildable {
         super.init(dependency: dependency)
     }
 
-    func build(withListener listener: AddEventListener) -> AddEventRouting {
-        //let component = AddEventComponent(dependency: dependency)
+    func build(withListener listener: AddEventListener, date: Date? = nil) -> AddEventRouting {
+        let component = AddEventComponent(dependency: dependency)
+        component.date = date
+        
         let viewController = AddEventViewController()
-        let interactor = AddEventInteractor(presenter: viewController)
+        let interactor = AddEventInteractor(presenter: viewController, component: component)
         interactor.listener = listener
         return AddEventRouter(interactor: interactor, viewController: viewController)
     }
