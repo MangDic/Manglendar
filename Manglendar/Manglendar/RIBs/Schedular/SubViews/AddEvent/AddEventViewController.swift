@@ -15,11 +15,12 @@ protocol AddEventPresentableListener: AnyObject {
 }
 
 final class AddEventViewController: UIViewController, AddEventPresentable, AddEventViewControllable {
-
+    // MARK: - Properties
     weak var listener: AddEventPresentableListener?
     
     var disposeBag = DisposeBag()
     
+    // MARK: - Views
     lazy var contentView = UIView().then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 20
@@ -41,7 +42,7 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
         $0.spacing = 5
         $0.distribution = .fillEqually
     }
-
+    
     lazy var cancelButton = UIButton().then {
         $0.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
         $0.layer.cornerRadius = 8
@@ -50,12 +51,10 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
         $0.rx.tap.subscribe(onNext: { [weak self] in
             guard let `self` = self else { return }
             self.dismiss(animated: true)
-            
         }).disposed(by: disposeBag)
     }
     
     lazy var saveButton = UIButton().then {
-        $0.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
         $0.layer.cornerRadius = 8
         $0.setTitle(R.String.AddEvent.save, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
@@ -69,9 +68,11 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
         }).disposed(by: disposeBag)
     }
     
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,6 +81,7 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
         self.clearData()
     }
     
+    // MARK: - Setup Layout
     private func setupLayout() {
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7016903707)
         
@@ -110,10 +112,27 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
         }
     }
     
+    // MARK: - Binding
+    private func bind() {
+        titleField.rx.text
+            .map{ $0 != "" }
+            .bind(to: saveButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        titleField.rx.text
+            .subscribe(onNext: { [weak self] text in
+                guard let `self` = self else { return }
+                self.saveButton.alpha = text == "" ? 0.6 : 1
+                self.saveButton.backgroundColor = text == "" ? #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1) : #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
+            }).disposed(by: disposeBag)
+    }
+    
+    // MARK: - Clear Date
     private func clearData() {
         self.titleField.text = nil
     }
     
+    // MARK: - AddEventViewControllable
     func updatePickerDate(date: Date?) {
         if let date = date {
             datePicker.date = date

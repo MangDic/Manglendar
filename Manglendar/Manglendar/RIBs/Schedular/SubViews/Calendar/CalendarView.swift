@@ -12,6 +12,7 @@ import RxSwift
 import RxCocoa
 
 class CalendarView: UIView {
+    // MARK: - Properties
     var disposeBag = DisposeBag()
     
     var selectedRelay = PublishRelay<Date>()
@@ -27,10 +28,14 @@ class CalendarView: UIView {
     private var calendar = Calendar.current
     
     private let months = Array(1...12)
+    // 요일 String 배열
     private let daysOfWeek = R.String.Calendar.daysOfWeek
+    // 셀을 클릭할 경우 날짜를 다음 뷰 컨트롤러에게 넘겨줌
     private var selectedDate: Date?
+    // 달력에 들어가는 모든 일정들. key 형식은 YYYYMMDD
     var events: [String: [ScheduleEvent]] = [:]
     
+    // MARK: - Views
     private lazy var monthLabel = UILabel().then {
         $0.textAlignment = .center
         $0.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
@@ -94,6 +99,7 @@ class CalendarView: UIView {
         super.init(coder: coder)
     }
     
+    // MARK: - Dependency Injection
     func setupDI(_ eventsRelay: BehaviorRelay<[String:[ScheduleEvent]]>?) -> Self {
         eventsRelay?.bind(to: self.eventsRelay).disposed(by: disposeBag)
         return self
@@ -103,6 +109,7 @@ class CalendarView: UIView {
         self.selectedRelay.bind(to: selectedRelay).disposed(by: disposeBag)
     }
     
+    // MARK: - Setup Layout
     private func setupLayout() {
         addSubviews([prevMonthButton,
                      monthLabel,
@@ -141,6 +148,7 @@ class CalendarView: UIView {
         }
     }
     
+    // MARK: Binding
     private func bind(){
         eventsRelay.subscribe(onNext: { [weak self] events in
             guard let `self` = self else { return }
@@ -149,6 +157,7 @@ class CalendarView: UIView {
         }).disposed(by: disposeBag)
     }
     
+    // MARK: Methods
     private func createDayOfWeekLabels() -> UIStackView {
         let stackView = UIStackView()
         stackView.backgroundColor = #colorLiteral(red: 0.9486155907, green: 0.9486155907, blue: 0.9486155907, alpha: 1)
@@ -169,7 +178,7 @@ class CalendarView: UIView {
         
         return stackView
     }
-    
+    /// 캘린더 초기값 세팅
     private func initCalendar() {
         calendar.timeZone = TimeZone(identifier: "Asia/Seoul") ?? calendar.timeZone
         currentMonthIndex = calendar.component(.month, from: Date()) - 1
@@ -179,7 +188,7 @@ class CalendarView: UIView {
         calculateDaysInMonth()
         gridView.reloadData()
     }
-    
+    /// 현재 달의 일수 계산
     private func calculateDaysInMonth() {
         calendar.timeZone = TimeZone(identifier: "Asia/Seoul") ?? calendar.timeZone
         for month in months {
@@ -196,13 +205,14 @@ class CalendarView: UIView {
             }
         }
     }
-    
+    /// 일정이 추가되거나 다음, 이전 버튼을 클릭하면 캘린더를 업데이트
     func updateCalendar() {
         monthLabel.text = R.String.Calendar.month(currentYear, months[currentMonthIndex])
         gridView.reloadData()
     }
 }
 
+// MARK: - CollectionView DataSource
 extension CalendarView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return totalGrids
@@ -212,13 +222,17 @@ extension CalendarView: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarCell.identifier, for: indexPath) as! CalendarCell
         let firstDayOfMonth = calculateFirstDayOfMonth()
         let day = indexPath.item - firstDayOfMonth + 1
+        // 날짜 밖의 셀이라면 빈 데이터를 넘겨줌
         if indexPath.item < firstDayOfMonth || day > daysInMonth[currentMonthIndex] {
             cell.configure(date: "")
         }
         else {
             cell.configure(date: "\(day)", isToday: isToday(year: currentYear, month: currentMonthIndex + 1, day: day))
             
-            let key = "\(currentYear)\(currentMonthIndex + 1)\(day)"
+            let month = String(format: "%02d", currentMonthIndex + 1)
+            let dayString = String(format: "%02d", day)
+            let key = "\(currentYear)\(month)\(dayString)"
+            // 해당 날짜의 일정들이 있으면 셀에 넘겨줌
             if let events = events[key], !events.isEmpty {
                 cell.addEvents(events)
             }
@@ -239,6 +253,7 @@ extension CalendarView: UICollectionViewDataSource {
         
         let firstDayOfMonth = calculateFirstDayOfMonth()
         let day = indexPath.item - firstDayOfMonth + 1
+        // 날짜 범위 내의 셀들만 클릭 이벤트 Accept
         if day > 0 && day <= daysInMonth[currentMonthIndex] {
             let selectedDateComponents = DateComponents(year: currentYear, month: currentMonthIndex + 1, day: day)
             selectedDate = calendar.date(from: selectedDateComponents)
@@ -248,17 +263,18 @@ extension CalendarView: UICollectionViewDataSource {
         }
     }
     
-    func isToday(year: Int, month: Int, day: Int) -> Bool {
+    private func isToday(year: Int, month: Int, day: Int) -> Bool {
         let today = Date()
         let calendar = Calendar.current
         let todayComponents = calendar.dateComponents([.year, .month, .day], from: today)
         
         return todayComponents.year ?? 0 == year
-            && todayComponents.month ?? 0 == month
-            && todayComponents.day ?? 0 == day
+        && todayComponents.month ?? 0 == month
+        && todayComponents.day ?? 0 == day
     }
 }
 
+// MARK: - CollectionView Delegate FlowLayout
 extension CalendarView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width / CGFloat(daysPerWeek)

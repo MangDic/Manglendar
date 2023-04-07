@@ -17,10 +17,12 @@ protocol EventDetailPresentableListener: AnyObject {
 
 final class EventDetailViewController: UIViewController, EventDetailPresentable, EventDetailViewControllable {
 
+    // MARK: - Properties
     weak var listener: EventDetailPresentableListener?
     
     var disposeBag = DisposeBag()
     
+    // MARK: - Views
     lazy var contentView = UIView().then {
         $0.layer.cornerRadius = 20
         $0.backgroundColor = .white
@@ -58,6 +60,7 @@ final class EventDetailViewController: UIViewController, EventDetailPresentable,
         }).disposed(by: disposeBag)
     }
     
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,6 +68,7 @@ final class EventDetailViewController: UIViewController, EventDetailPresentable,
         bind()
     }
     
+    // MARK: - Setup Layout
     private func setupLayout() {
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7016903707)
         view.addSubview(contentView)
@@ -98,6 +102,7 @@ final class EventDetailViewController: UIViewController, EventDetailPresentable,
         }
     }
     
+    // MARK: - Binding
     private func bind() {
         listener?.eventsRelay.bind(to: tableView.rx.items(cellIdentifier: EventsDetailCell.id)) { row, item, cell in
             guard let cell = cell as? EventsDetailCell else { return }
@@ -112,7 +117,7 @@ final class EventDetailViewController: UIViewController, EventDetailPresentable,
         }).disposed(by: disposeBag)
     }
     
-    // 동적 테이블뷰 높이 업데이트
+    // MARK: - View Update
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -124,6 +129,7 @@ final class EventDetailViewController: UIViewController, EventDetailPresentable,
         }
     }
     
+    // MARK: - EventDetailPresentable
     func setDateLabel(date: Date) {
         dateLabel.text = date.convertDateToString(type: .comming)
     }

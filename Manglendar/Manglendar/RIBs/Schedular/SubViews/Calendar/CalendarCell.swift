@@ -8,8 +8,10 @@
 import UIKit
 
 class CalendarCell: UICollectionViewCell {
+    // MARK: - Properties
     static let identifier = "CalendarCell"
     
+    // MARK: - Views
     lazy var contentStack = UIStackView().then {
         $0.spacing = 3
         $0.axis = .vertical
@@ -33,6 +35,7 @@ class CalendarCell: UICollectionViewCell {
         $0.isHidden = true
     }
     
+    // MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupLayout()
@@ -42,6 +45,7 @@ class CalendarCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Prepare For Reuse
     override func prepareForReuse() {
         super.prepareForReuse()
         
@@ -51,37 +55,7 @@ class CalendarCell: UICollectionViewCell {
         removeEvents()
     }
     
-    func configure(date: String, isToday: Bool = false) {
-        dayLabel.text = isToday ? R.String.Calendar.today : date
-        contentStack.layer.borderColor = date == "" ? #colorLiteral(red: 0.9633767737, green: 0.9633767737, blue: 0.9633767737, alpha: 1) : #colorLiteral(red: 0.8794001822, green: 0.8794001822, blue: 0.8794001822, alpha: 1)
-        contentStack.backgroundColor = date == "" ? #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0) : #colorLiteral(red: 0.9766330912, green: 0.9766330912, blue: 0.9766330912, alpha: 1)
-        layer.borderColor = isToday ? #colorLiteral(red: 0.9584831547, green: 0.03299645901, blue: 0.402612538, alpha: 1) : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0)
-    }
-    
-    func addEvents(_ events: [ScheduleEvent]) {
-        let colorArr = [#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1), #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1), #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1), #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)]
-        moreDescriptionLabel.isHidden = events.count < 4
-        
-        for (i, event) in events.enumerated() {
-            if i == 3 {
-                moreDescriptionLabel.text = R.String.Calendar.eventCount(events.count-3)
-                break
-            }
-            let rand = Int.random(in: 0...colorArr.count-1)
-            let label = UILabel()
-            label.backgroundColor = colorArr[rand]
-            label.textColor = .white
-            label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-            label.text = event.title
-            
-            contentStack.addArrangedSubview(label)
-            
-            label.snp.makeConstraints {
-                $0.height.equalTo((frame.height - dayLabel.frame.height) / 3 - 12)
-            }
-        }
-    }
-    
+    // MARK: - Setup Layout
     private func setupLayout() {
         layer.borderWidth = 1
         let bottomSpacingView = UIView()
@@ -112,8 +86,42 @@ class CalendarCell: UICollectionViewCell {
         }
     }
     
+    // MARK: - Configure
+    func configure(date: String, isToday: Bool = false) {
+        dayLabel.text = isToday ? R.String.Calendar.today : date
+        contentStack.layer.borderColor = date == "" ? #colorLiteral(red: 0.9633767737, green: 0.9633767737, blue: 0.9633767737, alpha: 1) : #colorLiteral(red: 0.8794001822, green: 0.8794001822, blue: 0.8794001822, alpha: 1)
+        contentStack.backgroundColor = date == "" ? #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0) : #colorLiteral(red: 0.9766330912, green: 0.9766330912, blue: 0.9766330912, alpha: 1)
+        layer.borderColor = isToday ? #colorLiteral(red: 0.9584831547, green: 0.03299645901, blue: 0.402612538, alpha: 1) : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0)
+    }
+    
+    // MARK: Methods
+    /// 셀에 일정들을 추가. 최대 3개까지만 출력되며 넘어가면 그 수만큼 텍스트 출력
+    func addEvents(_ events: [ScheduleEvent]) {
+        let colorArr = [#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1), #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1), #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1), #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)]
+        moreDescriptionLabel.isHidden = events.count < 4
+        
+        for (i, event) in events.enumerated() {
+            if i == 3 {
+                moreDescriptionLabel.text = R.String.Calendar.eventCount(events.count-3)
+                break
+            }
+            let rand = Int.random(in: 0...colorArr.count-1)
+            let label = UILabel()
+            label.backgroundColor = colorArr[rand]
+            label.textColor = .white
+            label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+            label.text = event.title
+            
+            contentStack.addArrangedSubview(label)
+            
+            label.snp.makeConstraints {
+                $0.height.equalTo((frame.height - dayLabel.frame.height) / 3 - 12)
+            }
+        }
+    }
+    
+    /// 셀에서 이벤트 라벨 제거
     private func removeEvents() {
-        // 셀에서 이벤트 라벨 제거
         for subview in contentStack.arrangedSubviews {
             contentStack.removeArrangedSubview(subview)
             subview.removeFromSuperview()

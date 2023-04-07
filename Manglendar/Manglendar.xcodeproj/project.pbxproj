@@ -43,6 +43,7 @@
 		DAC93F5329DD61F500693F6C /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F5229DD61F500693F6C /* Date+.swift */; };
 		DAC93F5629DFB1AF00693F6C /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F5529DFB1AF00693F6C /* UIView+.swift */; };
 		DAC93F5929DFB49600693F6C /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F5829DFB49600693F6C /* Resource.swift */; };
+		DAC93F5C29DFD91900693F6C /* CommingListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F5B29DFD91900693F6C /* CommingListCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		DAC93F5229DD61F500693F6C /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		DAC93F5529DFB1AF00693F6C /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		DAC93F5829DFB49600693F6C /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
+		DAC93F5B29DFD91900693F6C /* CommingListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommingListCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,10 +196,10 @@
 		DAC93F1B29DAB9FA00693F6C /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				DAC93F5A29DFD90400693F6C /* CommingList */,
 				DAC93F4829DD4B1800693F6C /* AddEvent */,
 				DAC93F2C29DD32A500693F6C /* EventDetail */,
 				DAC93F2029DBA6EF00693F6C /* Calendar */,
-				DAC93F1C29DABA0F00693F6C /* CommingEventListView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -281,6 +283,15 @@
 				DAC93F4629DD44CE00693F6C /* AppComponent.swift */,
 			);
 			path = RIBs;
+			sourceTree = "<group>";
+		};
+		DAC93F5A29DFD90400693F6C /* CommingList */ = {
+			isa = PBXGroup;
+			children = (
+				DAC93F1C29DABA0F00693F6C /* CommingEventListView.swift */,
+				DAC93F5B29DFD91900693F6C /* CommingListCell.swift */,
+			);
+			path = CommingList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -443,6 +454,7 @@
 				DAC93F4229DD445E00693F6C /* RootRouter.swift in Sources */,
 				DAC93F1929DAB9C200693F6C /* SchedularBuilder.swift in Sources */,
 				DAC93F1A29DAB9C200693F6C /* SchedularInteractor.swift in Sources */,
+				DAC93F5C29DFD91900693F6C /* CommingListCell.swift in Sources */,
 				DAC93F4529DD445E00693F6C /* RootInteractor.swift in Sources */,
 				DAC93F5029DD4BA600693F6C /* AddEventInteractor.swift in Sources */,
 				DAC93F4F29DD4BA600693F6C /* AddEventBuilder.swift in Sources */,

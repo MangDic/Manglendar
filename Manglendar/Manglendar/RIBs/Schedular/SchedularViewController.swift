@@ -18,6 +18,7 @@ protocol SchedularPresentableListener: AnyObject {
 }
 
 final class SchedularViewController: UIViewController, SchedularPresentable, SchedularViewControllable {
+    // MARK: - Properties
     weak var listener: SchedularPresentableListener?
     
     var disposeBag = DisposeBag()
@@ -27,6 +28,7 @@ final class SchedularViewController: UIViewController, SchedularPresentable, Sch
     private var targetViewController: ViewControllable?
     private var animationInProgress = false
     
+    // MARK: - Views
     lazy var commingEventListView = CommingEventListView()
     lazy var calendarView = CalendarView()
     
@@ -41,6 +43,7 @@ final class SchedularViewController: UIViewController, SchedularPresentable, Sch
         }).disposed(by: disposeBag)
     }
     
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,6 +51,7 @@ final class SchedularViewController: UIViewController, SchedularPresentable, Sch
         bind()
     }
     
+    // MARK: - Setup Layout
     private func setupLayout() {
         view.backgroundColor = .white
         
@@ -68,6 +72,7 @@ final class SchedularViewController: UIViewController, SchedularPresentable, Sch
         }
     }
     
+    // MARK: - Binding
     private func bind() {
         calendarView
             .setupDI(listener?.eventsRelay)
@@ -81,6 +86,7 @@ final class SchedularViewController: UIViewController, SchedularPresentable, Sch
         }).disposed(by: disposeBag)
     }
     
+    // MARK: - SchedularViewControllable
     func replaceModal(viewController: ViewControllable?) {
         targetViewController = viewController
         
