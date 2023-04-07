@@ -19,6 +19,7 @@
 ## 2023. 04. 07
  - CommingEventListView 데이터 바인딩
  - AddEventView titleField 바인딩 추가 (텍스트 유무에 따라 저장 버튼 isEnabled과 백그라운드 색 설정) 
+ - ScheduleEventManager(UserDefaults)로 일정 데이터 관리
 
 ## 2023. 04. 06
 - AddEventView에 date 전달 이벤트 추가
