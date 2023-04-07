@@ -5,8 +5,8 @@
  - RxSwift, SnapKit, RIPs
 
 # 주요 기능
-<img width="200" alt="스크린샷 2023-04-07 오후 2 02 45" src="https://user-images.githubusercontent.com/44960073/230544883-1810ea10-2614-45d5-b570-15811a64d5f9.png"> <img width="200" alt="스크린샷 2023-04-07 오후 2 06 12" src="https://user-images.githubusercontent.com/44960 <img width="200" alt="스크린샷 2023-04-07 오후 2 06 53" src="https://user-images.githubusercontent.com/44960073/230544893-53e2a6e0-7c8b-44c4-8529-a639f472ec6e.png">
-073/230544887-d0710500-7a80-4a74-ba16-719ddc6c490e.png"> <img width="200" alt="스크린샷 2023-04-07 오후 2 06 35" src="https://user-images.githubusercontent.com/44960073/230544900-7245b0f2-e3cb-4294-8f77-1f6e2fd46cf3.png">
+<img width="200" alt="스크린샷 2023-04-07 오후 2 02 45" src="https://user-images.githubusercontent.com/44960073/230545071-25375c9a-ebb2-4ba6-bda3-f8127012f1d9.png"><img width="200" alt="스크린샷 2023-04-07 오후 2 06 35" src="https://user-images.githubusercontent.com/44960073/230545076-9cbf674e-8a7c-4d21-9d9c-75c5f04dfc97.png"><img width="200" alt="스크린샷 2023-04-07 오후 2 06 53" src="https://user-images.githubusercontent.com/44960073/230545081-8ffdf805-5351-40a0-8914-e9b50c9735ae.png"><img width="200" alt="스크린샷 2023-04-07 오후 2 06 12" src="https://user-images.githubusercontent.com/44960073/230545084-d36d06ad-045e-485d-9faa-1084dfa26100.png">
+
 
  - 일정 추가
  - 일정의 레이블 색상 지정 (예정)
