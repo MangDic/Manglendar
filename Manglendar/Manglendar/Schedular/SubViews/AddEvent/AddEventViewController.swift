@@ -85,9 +85,7 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
         
         view.addSubview(contentView)
         
-        contentView.addSubview(titleField)
-        contentView.addSubview(datePicker)
-        contentView.addSubview(buttonStack)
+        contentView.addSubviews([titleField, datePicker, buttonStack])
         
         buttonStack.addArrangedSubview(cancelButton)
         buttonStack.addArrangedSubview(saveButton)

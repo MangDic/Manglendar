@@ -33,7 +33,8 @@ class CalendarView: UIView {
     
     private lazy var monthLabel = UILabel().then {
         $0.textAlignment = .center
-        $0.font = UIFont.boldSystemFont(ofSize: 18)
+        $0.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        $0.font = UIFont.systemFont(ofSize: 18, weight: .bold)
     }
     
     private lazy var nextMonthButton = UIButton().then {
@@ -63,6 +64,8 @@ class CalendarView: UIView {
             self.updateCalendar()
         }).disposed(by: disposeBag)
     }
+    
+    lazy var daysOfWeekStackView = createDayOfWeekLabels()
     
     lazy var layout = UICollectionViewFlowLayout().then {
         $0.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -101,12 +104,12 @@ class CalendarView: UIView {
     }
     
     private func setupLayout() {
-        let daysOfWeekStackView = createDayOfWeekLabels()
-        addSubview(prevMonthButton)
-        addSubview(monthLabel)
-        addSubview(nextMonthButton)
-        addSubview(daysOfWeekStackView)
-        addSubview(gridView)
+        addSubviews([prevMonthButton,
+                     monthLabel,
+                     nextMonthButton,
+                     daysOfWeekStackView,
+                     gridView])
+        
         initCalendar()
         
         monthLabel.snp.makeConstraints {

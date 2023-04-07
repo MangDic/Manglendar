@@ -69,10 +69,7 @@ final class EventDetailViewController: UIViewController, EventDetailPresentable,
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7016903707)
         view.addSubview(contentView)
         
-        contentView.addSubview(dateLabel)
-        contentView.addSubview(tableView)
-        contentView.addSubview(addEventButton)
-        contentView.addSubview(emptyDescriptionLabel)
+        contentView.addSubviews([dateLabel, tableView, addEventButton, emptyDescriptionLabel])
         
         contentView.snp.makeConstraints {
             $0.width.equalToSuperview()
@@ -128,6 +125,6 @@ final class EventDetailViewController: UIViewController, EventDetailPresentable,
     }
     
     func setDateLabel(date: Date) {
-        dateLabel.text = date.convertDateToTitle()
+        dateLabel.text = date.convertDateToString(type: .comming)
     }
 }

@@ -8,15 +8,22 @@
 import Foundation
 
 extension Date {
-    /// event 딕셔너리의 키값으로 사용합니다.
-    func convertStringKey() -> String {
+    /// DateType에 맞는 String으로 변환합니다.
+    func convertDateToString(type: DateType) -> String {
         let date = Calendar.current.dateComponents([.year, .month, .day], from: self)
-        return "\(date.year ?? 0)\(date.month ?? 0)\(date.day ?? 0)"
+        let month = String(format: "%02d", date.month ?? 0)
+        let day = String(format: "%02d", date.day ?? 0)
+        
+        switch type {
+        case .key:
+            return "\(date.year ?? 0)\(month)\(day)"
+        case .comming:
+            return "\(date.year ?? 0)년 \(month)월 \(day)일"
+        }
     }
-    
-    /// A년 B월 C일 형식으로 변환합니다.
-    func convertDateToTitle() -> String {
-        let date = Calendar.current.dateComponents([.year, .month, .day], from: self)
-        return "\(date.year ?? 0)년 \(date.month ?? 0)월 \(date.day ?? 0)일"
-    }
+}
+
+enum DateType {
+    case comming    // 다가오는 일정
+    case key        // event 딕셔너리 키값
 }

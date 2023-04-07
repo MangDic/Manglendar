@@ -20,6 +20,12 @@ final class RootViewController: UINavigationController, RootPresentable, RootVie
 
     weak var listener: RootPresentableListener?
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        navigationBar.isHidden = true
+    }
+    
     func push(viewControllable: ViewControllable) {
         pushViewController(viewControllable.uiviewController, animated: false)
     }

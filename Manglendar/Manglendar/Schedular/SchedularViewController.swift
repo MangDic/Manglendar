@@ -14,6 +14,7 @@ protocol SchedularPresentableListener: AnyObject {
     func didTapCalendarCell(date: Date)
     func didTapAddEventButton()
     var eventsRelay: BehaviorRelay<[String:[ScheduleEvent]]> { get }
+    var commingEventsRelay: BehaviorRelay<[ScheduleEvent]> { get }
 }
 
 final class SchedularViewController: UIViewController, SchedularPresentable, SchedularViewControllable {
@@ -26,7 +27,7 @@ final class SchedularViewController: UIViewController, SchedularPresentable, Sch
     private var targetViewController: ViewControllable?
     private var animationInProgress = false
     
-    lazy var todoListView = TodoListView()
+    lazy var commingEventListView = CommingEventListView()
     lazy var calendarView = CalendarView()
     
     lazy var addEventButton = UIButton().then {
@@ -50,16 +51,14 @@ final class SchedularViewController: UIViewController, SchedularPresentable, Sch
     private func setupLayout() {
         view.backgroundColor = .white
         
-        view.addSubview(todoListView)
-        view.addSubview(calendarView)
-        view.addSubview(addEventButton)
+        view.addSubviews([commingEventListView, calendarView, addEventButton])
         
-        todoListView.snp.makeConstraints {
+        commingEventListView.snp.makeConstraints {
             $0.leading.top.trailing.equalTo(view.safeAreaLayoutGuide)
         }
         
         calendarView.snp.makeConstraints {
-            $0.top.equalTo(todoListView.snp.bottom).offset(10)
+            $0.top.equalTo(commingEventListView.snp.bottom).offset(10)
             $0.leading.bottom.trailing.equalToSuperview()
         }
         
@@ -73,6 +72,8 @@ final class SchedularViewController: UIViewController, SchedularPresentable, Sch
         calendarView
             .setupDI(listener?.eventsRelay)
             .setupDI(selectedRelay)
+        
+        commingEventListView.setupDI(listener?.commingEventsRelay)
         
         selectedRelay.subscribe(onNext: { [weak self] date in
             guard let `self` = self else { return }

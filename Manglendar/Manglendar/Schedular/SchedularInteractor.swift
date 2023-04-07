@@ -25,6 +25,7 @@ protocol SchedularListener: AnyObject {
 
 final class SchedularInteractor: PresentableInteractor<SchedularPresentable>, SchedularInteractable, SchedularPresentableListener {
     var eventsRelay = BehaviorRelay<[String : [ScheduleEvent]]>(value: [:])
+    var commingEventsRelay = BehaviorRelay<[ScheduleEvent]>(value: [])
     
     weak var router: SchedularRouting?
     weak var listener: SchedularListener?
@@ -50,7 +51,7 @@ final class SchedularInteractor: PresentableInteractor<SchedularPresentable>, Sc
     }
     
     func didTapCalendarCell(date: Date) {
-        let key = date.convertStringKey()
+        let key = date.convertDateToString(type: .key)
         router?.navigateToDetailScreen(events: events[key] == nil ? [] : events[key]!, date: date)
     }
     
@@ -63,7 +64,7 @@ final class SchedularInteractor: PresentableInteractor<SchedularPresentable>, Sc
     }
     
     func addEvent(event: ScheduleEvent) {
-        let key = event.date.convertStringKey()
+        let key = event.date.convertDateToString(type: .key)
         if events[key] == nil {
             events[key] = [event]
         }
@@ -71,6 +72,16 @@ final class SchedularInteractor: PresentableInteractor<SchedularPresentable>, Sc
             events[key]!.append(event)
         }
         eventsRelay.accept(events)
+        setCommingEvent()
+    }
+    
+    private func setCommingEvent() {
+        var arr = [ScheduleEvent]()
+        let sortedEvent = events.sorted(by: { $0.key < $1.key }).map { $0.value }
+        for events in sortedEvent {
+            arr += events
+        }
+        commingEventsRelay.accept(arr)
     }
     
     private func loadEvents() {

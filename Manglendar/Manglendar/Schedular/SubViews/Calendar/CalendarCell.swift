@@ -77,7 +77,7 @@ class CalendarCell: UICollectionViewCell {
             contentStack.addArrangedSubview(label)
             
             label.snp.makeConstraints {
-                $0.height.equalTo((contentView.frame.height - dayLabel.frame.height) / 3 - 12)
+                $0.height.equalTo((frame.height - dayLabel.frame.height) / 3 - 12)
             }
         }
     }
