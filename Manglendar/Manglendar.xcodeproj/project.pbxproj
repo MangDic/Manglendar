@@ -42,6 +42,7 @@
 		DAC93F5029DD4BA600693F6C /* AddEventInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F4C29DD4BA600693F6C /* AddEventInteractor.swift */; };
 		DAC93F5329DD61F500693F6C /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F5229DD61F500693F6C /* Date+.swift */; };
 		DAC93F5629DFB1AF00693F6C /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F5529DFB1AF00693F6C /* UIView+.swift */; };
+		DAC93F5929DFB49600693F6C /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F5829DFB49600693F6C /* Resource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		DAC93F4C29DD4BA600693F6C /* AddEventInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventInteractor.swift; sourceTree = "<group>"; };
 		DAC93F5229DD61F500693F6C /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		DAC93F5529DFB1AF00693F6C /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		DAC93F5829DFB49600693F6C /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,12 +153,11 @@
 		DAC93ED329DAB81000693F6C /* Manglendar */ = {
 			isa = PBXGroup;
 			children = (
-				DAC93F4629DD44CE00693F6C /* AppComponent.swift */,
+				DAC93F5729DFB46700693F6C /* RIBs */,
 				DAC93F5129DD61E800693F6C /* Extensions */,
 				DAC93F2929DC19C100693F6C /* Models */,
-				DAC93F3D29DD445400693F6C /* Root */,
-				DAC93F1229DAB98300693F6C /* Schedular */,
 				DAC93F5429DFA44500693F6C /* Supproting Files */,
+				DAC93F5829DFB49600693F6C /* Resource.swift */,
 			);
 			path = Manglendar;
 			sourceTree = "<group>";
@@ -270,6 +271,16 @@
 				DAC93EE229DAB81300693F6C /* Info.plist */,
 			);
 			path = "Supproting Files";
+			sourceTree = "<group>";
+		};
+		DAC93F5729DFB46700693F6C /* RIBs */ = {
+			isa = PBXGroup;
+			children = (
+				DAC93F3D29DD445400693F6C /* Root */,
+				DAC93F1229DAB98300693F6C /* Schedular */,
+				DAC93F4629DD44CE00693F6C /* AppComponent.swift */,
+			);
+			path = RIBs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -428,6 +439,7 @@
 				DAC93F4429DD445E00693F6C /* RootBuilder.swift in Sources */,
 				DAC93F3C29DD32E400693F6C /* EventDetailInteractor.swift in Sources */,
 				DAC93F1F29DABA9E00693F6C /* CalendarView.swift in Sources */,
+				DAC93F5929DFB49600693F6C /* Resource.swift in Sources */,
 				DAC93F4229DD445E00693F6C /* RootRouter.swift in Sources */,
 				DAC93F1929DAB9C200693F6C /* SchedularBuilder.swift in Sources */,
 				DAC93F1A29DAB9C200693F6C /* SchedularInteractor.swift in Sources */,

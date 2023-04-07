@@ -27,7 +27,7 @@ class CalendarView: UIView {
     private var calendar = Calendar.current
     
     private let months = Array(1...12)
-    private let daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"]
+    private let daysOfWeek = R.String.Calendar.daysOfWeek
     private var selectedDate: Date?
     var events: [String: [ScheduleEvent]] = [:]
     
@@ -175,7 +175,7 @@ class CalendarView: UIView {
         currentMonthIndex = calendar.component(.month, from: Date()) - 1
         currentYear = calendar.component(.year, from: Date())
         
-        monthLabel.text = "\(currentYear)년 \(months[currentMonthIndex])월"
+        monthLabel.text = R.String.Calendar.month(currentYear, months[currentMonthIndex])
         calculateDaysInMonth()
         gridView.reloadData()
     }
@@ -198,7 +198,7 @@ class CalendarView: UIView {
     }
     
     func updateCalendar() {
-        monthLabel.text = "\(currentYear)년 \(months[currentMonthIndex])월"
+        monthLabel.text = R.String.Calendar.month(currentYear, months[currentMonthIndex])
         gridView.reloadData()
     }
 }

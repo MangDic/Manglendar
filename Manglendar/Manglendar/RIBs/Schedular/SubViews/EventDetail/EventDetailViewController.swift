@@ -33,7 +33,7 @@ final class EventDetailViewController: UIViewController, EventDetailPresentable,
     }
     
     lazy var emptyDescriptionLabel = UILabel().then {
-        $0.text = "일정이 없습니다 :("
+        $0.text = R.String.EventDetail.emptyEventDescription
         $0.textColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         $0.textAlignment = .center
         $0.font = UIFont.systemFont(ofSize: 24, weight: .bold)
@@ -48,7 +48,7 @@ final class EventDetailViewController: UIViewController, EventDetailPresentable,
     }
     
     lazy var addEventButton = UIButton().then {
-        $0.setTitle("일정 추가", for: .normal)
+        $0.setTitle(R.String.EventDetail.addEventDescription, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         $0.layer.cornerRadius = 8
         $0.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)

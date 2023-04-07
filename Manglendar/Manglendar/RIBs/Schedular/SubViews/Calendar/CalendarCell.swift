@@ -52,7 +52,7 @@ class CalendarCell: UICollectionViewCell {
     }
     
     func configure(date: String, isToday: Bool = false) {
-        dayLabel.text = isToday ? "오늘" : date
+        dayLabel.text = isToday ? R.String.Calendar.today : date
         contentStack.layer.borderColor = date == "" ? #colorLiteral(red: 0.9633767737, green: 0.9633767737, blue: 0.9633767737, alpha: 1) : #colorLiteral(red: 0.8794001822, green: 0.8794001822, blue: 0.8794001822, alpha: 1)
         contentStack.backgroundColor = date == "" ? #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0) : #colorLiteral(red: 0.9766330912, green: 0.9766330912, blue: 0.9766330912, alpha: 1)
         layer.borderColor = isToday ? #colorLiteral(red: 0.9584831547, green: 0.03299645901, blue: 0.402612538, alpha: 1) : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0)
@@ -64,7 +64,7 @@ class CalendarCell: UICollectionViewCell {
         
         for (i, event) in events.enumerated() {
             if i == 3 {
-                moreDescriptionLabel.text = "+\(events.count-3)"
+                moreDescriptionLabel.text = R.String.Calendar.eventCount(events.count-3)
                 break
             }
             let rand = Int.random(in: 0...colorArr.count-1)
@@ -86,10 +86,10 @@ class CalendarCell: UICollectionViewCell {
         layer.borderWidth = 1
         let bottomSpacingView = UIView()
         
-        addSubview(dayLabel)
-        addSubview(contentStack)
-        addSubview(bottomSpacingView)
-        addSubview(moreDescriptionLabel)
+        addSubviews([dayLabel,
+                     contentStack,
+                     bottomSpacingView,
+                     moreDescriptionLabel])
         
         dayLabel.snp.makeConstraints {
             $0.leading.top.trailing.equalToSuperview()

@@ -27,14 +27,14 @@ class EventsDetailCell: UITableViewCell {
         $0.textAlignment = .left
         $0.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         $0.textColor = .white
-        $0.text = "장소 : 등록한 장소가 없습니다."
+        $0.text = R.String.EventDetail.placeEmpty
     }
     
     lazy var timeLabel = UILabel().then {
         $0.textAlignment = .left
         $0.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         $0.textColor = .white
-        $0.text = "시간 : 등록한 시간이 없습니다."
+        $0.text = R.String.EventDetail.timeEmpty
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -52,9 +52,7 @@ class EventsDetailCell: UITableViewCell {
     
     private func setupLayout() {
         contentView.addSubview(containerView)
-        containerView.addSubview(titleLabel)
-        containerView.addSubview(placeLabel)
-        containerView.addSubview(timeLabel)
+        containerView.addSubviews([titleLabel, placeLabel, timeLabel])
         
         containerView.snp.makeConstraints {
             $0.top.bottom.equalToSuperview().inset(10)

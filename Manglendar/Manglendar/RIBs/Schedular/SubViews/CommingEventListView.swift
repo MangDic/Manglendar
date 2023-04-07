@@ -18,8 +18,8 @@ class CommingEventListView: UIView {
     
     lazy var titleLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        $0.text = "다가오는 일정"
-        $0.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        $0.text = R.String.CommingEventList.title
+        $0.textColor = #colorLiteral(red: 0.6575845101, green: 0.6575845101, blue: 0.6575845101, alpha: 1)
         $0.textAlignment = .left
     }
     
@@ -31,9 +31,10 @@ class CommingEventListView: UIView {
     
     lazy var dataEmptyDescriptionLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        $0.text = "다가오는 일정이 없습니다 :("
+        $0.text = R.String.CommingEventList.dataEmptyDescription
         $0.textColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         $0.textAlignment = .center
+        $0.numberOfLines = 2
     }
     
     override init(frame: CGRect) {
@@ -47,9 +48,7 @@ class CommingEventListView: UIView {
     }
     
     private func setupLayout() {
-        addSubview(titleLabel)
-        addSubview(collectionView)
-        addSubview(dataEmptyDescriptionLabel)
+        addSubviews([titleLabel, collectionView, dataEmptyDescriptionLabel])
         
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide).inset(10)
@@ -110,19 +109,19 @@ class TodoListCell: UICollectionViewCell {
     static let id = "TodoListCell"
     
     lazy var containerView = UIView().then {
-        $0.backgroundColor = #colorLiteral(red: 0.9980114506, green: 0.9358230085, blue: 0.8072304099, alpha: 1)
+        $0.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.7857435958, blue: 0.7203170327, alpha: 1)
         $0.layer.cornerRadius = 8
     }
     
     lazy var dateLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        $0.textColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
+        $0.textColor = .white
         $0.textAlignment = .left
     }
     
     lazy var titleLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        $0.textColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
+        $0.textColor = .white
         $0.textAlignment = .left
     }
     

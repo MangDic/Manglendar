@@ -28,7 +28,7 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
     lazy var titleField = UITextField().then {
         $0.textColor = #colorLiteral(red: 0.5429155236, green: 0.5429155236, blue: 0.5429155236, alpha: 1)
         $0.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        $0.placeholder = "제목을 입력하세요."
+        $0.placeholder = R.String.AddEvent.titlePlaceholder
     }
     
     lazy var datePicker = UIDatePicker().then {
@@ -45,7 +45,7 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
     lazy var cancelButton = UIButton().then {
         $0.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
         $0.layer.cornerRadius = 8
-        $0.setTitle("취소", for: .normal)
+        $0.setTitle(R.String.AddEvent.cancel, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         $0.rx.tap.subscribe(onNext: { [weak self] in
             guard let `self` = self else { return }
@@ -57,11 +57,11 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
     lazy var saveButton = UIButton().then {
         $0.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
         $0.layer.cornerRadius = 8
-        $0.setTitle("저장", for: .normal)
+        $0.setTitle(R.String.AddEvent.save, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         $0.rx.tap.subscribe(onNext: { [weak self] in
             guard let `self` = self else { return }
-            let event = ScheduleEvent(title: self.titleField.text ?? "",
+            let event = ScheduleEvent(title: self.titleField.text ?? R.String.AddEvent.emptyTitleDescription,
                                       date: self.datePicker.date,
                                       color: " ")
             self.listener?.didTapSaveButton(scheduleEvent: event)
