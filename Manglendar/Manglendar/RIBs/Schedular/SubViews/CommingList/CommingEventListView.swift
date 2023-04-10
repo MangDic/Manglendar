@@ -25,7 +25,12 @@ class CommingEventListView: UIView {
         $0.textAlignment = .left
     }
     
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
+    let flowLayout = UICollectionViewFlowLayout().then {
+        $0.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        $0.scrollDirection = .horizontal
+    }
+    
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout).then {
         $0.backgroundColor = .white
         $0.alwaysBounceVertical = false
         $0.showsVerticalScrollIndicator = false
@@ -92,24 +97,5 @@ class CommingEventListView: UIView {
             self.titleLabel.isHidden = data.count == 0
             self.dataEmptyDescriptionLabel.isHidden = data.count != 0
         }).disposed(by: disposeBag)
-    }
-    
-    /// 셀 높이에 맞춰 컬렉션뷰 높이를 업데이트 합니다.
-    private func createLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            
-            let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(150), heightDimension: .estimated(100))
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
-            
-            let section = NSCollectionLayoutSection(group: group)
-            section.interGroupSpacing = 0
-            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
-            section.orthogonalScrollingBehavior = .continuous
-            return section
-        }
-    
-        return layout
     }
 }

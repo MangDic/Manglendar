@@ -37,6 +37,11 @@ class EventsDetailCell: UITableViewCell {
         $0.text = R.String.EventDetail.timeEmpty
     }
     
+    lazy var moreButton = UIButton().then {
+        $0.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        $0.tintColor = #colorLiteral(red: 0.9693942666, green: 0.9693942666, blue: 0.9693942666, alpha: 1)
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupLayout()

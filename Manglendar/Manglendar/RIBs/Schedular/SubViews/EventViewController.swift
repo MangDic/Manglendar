@@ -11,6 +11,8 @@ class EventViewController: UIViewController {
         $0.backgroundColor = .white
     }
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
