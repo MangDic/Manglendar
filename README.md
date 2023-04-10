@@ -1,5 +1,5 @@
 # Manglendar
- - RIPs 구조를 이해하기 위한 예제 프로젝트입니다.
+ - RIBs 구조를 이해하기 위한 예제 프로젝트입니다.
  
 # 사용 기술
  - RxSwift, SnapKit, RIPs
