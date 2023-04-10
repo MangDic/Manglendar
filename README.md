@@ -15,7 +15,11 @@
  - 약속 장소 경로 검색 (예정)
 
 # History
-
+## 2023. 04. 10
+ - 다가오는 일정 더보기 버튼 추가 (수정 및 삭제)
+ - 공휴일 API 연동 (일정들 가져올 때 중복체크)
+ - 다가오늘 일정 컬렉션뷰 크기를 셀에 맞춤 (estimatedItemSize = UICollectionViewFlowLayout.automaticSize)
+ 
 ## 2023. 04. 07
  - CommingEventListView 데이터 바인딩
  - AddEventView titleField 바인딩 추가 (텍스트 유무에 따라 저장 버튼 isEnabled과 백그라운드 색 설정) 
