@@ -1,4 +1,4 @@
-# Manglendar (이름 미정)
+# Manglendar
  - RIPs 구조를 이해하기 위한 예제 프로젝트입니다.
  
 # 사용 기술
