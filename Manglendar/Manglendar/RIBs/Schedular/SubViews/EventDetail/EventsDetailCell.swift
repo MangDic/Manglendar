@@ -47,7 +47,12 @@ class EventsDetailCell: UITableViewCell {
     }
     
     func configure(data: ScheduleEvent) {
+        let timeValue = data.date.getTimeValue()
+        
+        containerView.backgroundColor = R.Color.colorArr[data.color]
         titleLabel.text = data.title
+        timeLabel.text = R.String.EventDetail.time(timeValue.0, timeValue.1)
+        placeLabel.text = data.place == "" ? R.String.EventDetail.placeEmpty : R.String.EventDetail.place(data.place)
     }
     
     private func setupLayout() {

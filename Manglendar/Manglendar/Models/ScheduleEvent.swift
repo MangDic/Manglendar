@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct ScheduleEvent {
+struct ScheduleEvent: Codable, Hashable {
     let title: String
     let date: Date
-    let color: String
+    let place: String
+    let color: Int
 }

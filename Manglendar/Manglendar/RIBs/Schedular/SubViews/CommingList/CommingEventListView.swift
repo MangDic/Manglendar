@@ -27,6 +27,8 @@ class CommingEventListView: UIView {
     
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
         $0.backgroundColor = .white
+        $0.alwaysBounceVertical = false
+        $0.showsVerticalScrollIndicator = false
         $0.showsHorizontalScrollIndicator = false
         $0.register(CommingListCell.self, forCellWithReuseIdentifier: CommingListCell.id)
     }
@@ -63,6 +65,7 @@ class CommingEventListView: UIView {
             $0.top.equalTo(safeAreaLayoutGuide).inset(10)
             $0.leading.trailing.equalToSuperview().inset(20)
         }
+        
         collectionView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(10)
             $0.leading.trailing.equalToSuperview().inset(20)
@@ -101,12 +104,12 @@ class CommingEventListView: UIView {
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
             
             let section = NSCollectionLayoutSection(group: group)
-            section.interGroupSpacing = 10
+            section.interGroupSpacing = 0
             section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
             section.orthogonalScrollingBehavior = .continuous
             return section
         }
-        
+    
         return layout
     }
 }

@@ -43,6 +43,7 @@ class CommingListCell: UICollectionViewCell {
     func configure(event: ScheduleEvent) {
         dateLabel.text = event.date.convertDateToString(type: .comming)
         titleLabel.text = event.title
+        containerView.backgroundColor = R.Color.colorArr[event.color]
     }
     
     // MARK: - Setup Layout

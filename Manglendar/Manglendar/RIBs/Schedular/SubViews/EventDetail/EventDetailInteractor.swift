@@ -38,7 +38,7 @@ final class EventDetailInteractor: PresentableInteractor<EventDetailPresentable>
     
     override func didBecomeActive() {
         super.didBecomeActive()
-        eventsRelay.accept(component.events)
+        eventsRelay.accept(component.events.sorted(by: { $0.date < $1.date }))
         presenter.setDateLabel(date: component.date)
     }
     

@@ -21,6 +21,23 @@ extension Date {
             return "\(date.year ?? 0)년 \(month)월 \(day)일"
         }
     }
+    /// Date에 대한 시간과 분을 리턴합니다.
+    func getTimeValue() -> (Int, Int) {
+        let date = Calendar.current.dateComponents([.hour, .minute], from: self)
+        let hour = date.hour
+        let minute = date.minute
+        return (hour ?? 0, minute ?? 0)
+    }
+    
+    func convertStringToDate(date: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd"
+        dateFormatter.timeZone = TimeZone(identifier: "Asia/Seoul")
+        if let date = dateFormatter.date(from: date) {
+            return date
+        }
+        return Date()
+    }
 }
 
 enum DateType {

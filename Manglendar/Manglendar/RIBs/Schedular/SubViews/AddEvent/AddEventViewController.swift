@@ -19,6 +19,7 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
     weak var listener: AddEventPresentableListener?
     
     var disposeBag = DisposeBag()
+    var currentBtn: UIButton?
     
     // MARK: - Views
     lazy var contentView = UIView().then {
@@ -32,10 +33,59 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
         $0.placeholder = R.String.AddEvent.titlePlaceholder
     }
     
+    lazy var placeField = UITextField().then {
+        $0.textColor = #colorLiteral(red: 0.5429155236, green: 0.5429155236, blue: 0.5429155236, alpha: 1)
+        $0.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        $0.placeholder = R.String.AddEvent.placePlaceholder
+    }
+    
+    lazy var colorStack = UIStackView().then {
+        $0.spacing = 5
+        $0.backgroundColor = .white
+        
+        var tag = 0
+        for color in R.Color.colorArr {
+            let colorBtn = UIButton().then { btn in
+                btn.backgroundColor = #colorLiteral(red: 0.9464568496, green: 0.9583716989, blue: 0.9581621289, alpha: 1)
+                btn.layer.cornerRadius = 20
+                btn.tag = tag
+                btn.rx.tap.subscribe(onNext: { [weak self] in
+                    guard let `self` = self else { return }
+                    self.changeColor(tag: btn.tag, btn: btn)
+                }).disposed(by: disposeBag)
+            }
+            
+            let colorView = UIView().then {
+                $0.backgroundColor = color
+                $0.layer.cornerRadius = 15
+                $0.isUserInteractionEnabled = false
+            }
+            
+            $0.addArrangedSubview(colorBtn)
+            colorBtn.addSubview(colorView)
+            
+            colorBtn.snp.makeConstraints {
+                $0.size.equalTo(40)
+            }
+            
+            colorView.snp.makeConstraints {
+                $0.size.equalTo(30)
+                $0.center.equalToSuperview()
+            }
+            
+            if tag == 0 {
+                self.currentBtn = colorBtn
+            }
+            tag += 1
+        }
+        $0.addArrangedSubview(UIView())
+    }
+    
     lazy var datePicker = UIDatePicker().then {
+        $0.locale = Locale(identifier: "ko_KR")
         $0.tintColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
         $0.preferredDatePickerStyle = .inline
-        $0.datePickerMode = .date
+        $0.datePickerMode = .dateAndTime
     }
     
     lazy var buttonStack = UIStackView().then {
@@ -62,7 +112,8 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
             guard let `self` = self else { return }
             let event = ScheduleEvent(title: self.titleField.text ?? R.String.AddEvent.emptyTitleDescription,
                                       date: self.datePicker.date,
-                                      color: " ")
+                                      place: self.placeField.text ?? "",
+                                      color: self.currentBtn?.tag ?? 0)
             self.listener?.didTapSaveButton(scheduleEvent: event)
             self.dismiss(animated: true)
         }).disposed(by: disposeBag)
@@ -87,7 +138,11 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
         
         view.addSubview(contentView)
         
-        contentView.addSubviews([titleField, datePicker, buttonStack])
+        contentView.addSubviews([titleField,
+                                 placeField,
+                                 colorStack,
+                                 datePicker,
+                                 buttonStack])
         
         buttonStack.addArrangedSubview(cancelButton)
         buttonStack.addArrangedSubview(saveButton)
@@ -100,8 +155,18 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
             $0.leading.top.trailing.equalToSuperview().inset(20)
         }
         
-        datePicker.snp.makeConstraints {
+        placeField.snp.makeConstraints {
             $0.top.equalTo(titleField.snp.bottom).offset(20)
+            $0.leading.trailing.equalToSuperview().inset(20)
+        }
+        
+        colorStack.snp.makeConstraints {
+            $0.top.equalTo(placeField.snp.bottom).offset(20)
+            $0.leading.trailing.equalToSuperview().inset(20)
+        }
+        
+        datePicker.snp.makeConstraints {
+            $0.top.equalTo(colorStack.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview().inset(20)
         }
         
@@ -137,5 +202,18 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
         if let date = date {
             datePicker.date = date
         }
+    }
+    
+    // MARK: - Methods
+    private func changeColor(tag: Int, btn: UIButton) {
+        guard let _ = self.currentBtn else { return }
+        self.currentBtn!.backgroundColor = #colorLiteral(red: 0.9464568496, green: 0.9583716989, blue: 0.9581621289, alpha: 1)
+        btn.backgroundColor = .lightGray
+        self.currentBtn! = btn
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
     }
 }

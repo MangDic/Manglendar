@@ -6,14 +6,21 @@
 //
 
 import Foundation
+import UIKit
 
 struct R {
+    struct Color { }
     struct String { }
+}
+
+extension R.Color {
+    static let colorArr: [UIColor] = [#colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1), #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1), #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1), #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1), #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)]
 }
 
 extension R.String {
     struct AddEvent {
         static let titlePlaceholder = "제목을 입력하세요."
+        static let placePlaceholder = "장소를 입력하세요. (선택)"
         static let save = "저장"
         static let cancel = "취소"
         static let emptyTitleDescription = "제목이 없습니다."
@@ -24,6 +31,8 @@ extension R.String {
         static let addEventDescription = "일정 추가"
         static let placeEmpty = "장소 : 등록한 장소가 없습니다."
         static let timeEmpty = "시간 : 등록한 시간이 없습니다."
+        static let place: (String) -> String = { return "장소: \($0)" }
+        static let time: (Int, Int) -> String = { return "시간: \($0)시 \($1)분" }
     }
     
     struct Calendar {

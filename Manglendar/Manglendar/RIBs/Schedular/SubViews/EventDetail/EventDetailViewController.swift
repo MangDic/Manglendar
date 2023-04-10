@@ -44,7 +44,6 @@ final class EventDetailViewController: UIViewController, EventDetailPresentable,
     lazy var tableView = UITableView().then {
         $0.separatorStyle = .none
         $0.isHidden = true
-        $0.isScrollEnabled = false
         $0.rowHeight = UITableView.automaticDimension
         $0.register(EventsDetailCell.self, forCellReuseIdentifier: EventsDetailCell.id)
     }
@@ -124,7 +123,7 @@ final class EventDetailViewController: UIViewController, EventDetailPresentable,
         let h = tableView.contentSize.height
         if h != 0 {
             tableView.snp.updateConstraints {
-                $0.height.equalTo(h)
+                $0.height.equalTo(h > 400 ? 400 : h)
             }
         }
     }

@@ -44,6 +44,9 @@
 		DAC93F5629DFB1AF00693F6C /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F5529DFB1AF00693F6C /* UIView+.swift */; };
 		DAC93F5929DFB49600693F6C /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F5829DFB49600693F6C /* Resource.swift */; };
 		DAC93F5C29DFD91900693F6C /* CommingListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F5B29DFD91900693F6C /* CommingListCell.swift */; };
+		DAC93F5F29DFEAA100693F6C /* ScheduleEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F5E29DFEAA100693F6C /* ScheduleEventManager.swift */; };
+		DAC93F6229E0086C00693F6C /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DAC93F6129E0086C00693F6C /* IQKeyboardManagerSwift */; };
+		DAC93F6529E017AE00693F6C /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F6429E017AE00693F6C /* EventViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +103,8 @@
 		DAC93F5529DFB1AF00693F6C /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		DAC93F5829DFB49600693F6C /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		DAC93F5B29DFD91900693F6C /* CommingListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommingListCell.swift; sourceTree = "<group>"; };
+		DAC93F5E29DFEAA100693F6C /* ScheduleEventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEventManager.swift; sourceTree = "<group>"; };
+		DAC93F6429E017AE00693F6C /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +117,7 @@
 				DAC93F0629DAB8D200693F6C /* Then in Frameworks */,
 				DAC93F0E29DAB8FC00693F6C /* RxSwift in Frameworks */,
 				DAC93F0929DAB8E700693F6C /* SnapKit in Frameworks */,
+				DAC93F6229E0086C00693F6C /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,8 +164,8 @@
 				DAC93F5729DFB46700693F6C /* RIBs */,
 				DAC93F5129DD61E800693F6C /* Extensions */,
 				DAC93F2929DC19C100693F6C /* Models */,
+				DAC93F5D29DFEA7E00693F6C /* Services */,
 				DAC93F5429DFA44500693F6C /* Supproting Files */,
-				DAC93F5829DFB49600693F6C /* Resource.swift */,
 			);
 			path = Manglendar;
 			sourceTree = "<group>";
@@ -200,6 +206,7 @@
 				DAC93F4829DD4B1800693F6C /* AddEvent */,
 				DAC93F2C29DD32A500693F6C /* EventDetail */,
 				DAC93F2029DBA6EF00693F6C /* Calendar */,
+				DAC93F6429E017AE00693F6C /* EventViewController.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -294,6 +301,15 @@
 			path = CommingList;
 			sourceTree = "<group>";
 		};
+		DAC93F5D29DFEA7E00693F6C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DAC93F5829DFB49600693F6C /* Resource.swift */,
+				DAC93F5E29DFEAA100693F6C /* ScheduleEventManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -316,6 +332,7 @@
 				DAC93F0B29DAB8FC00693F6C /* RxCocoa */,
 				DAC93F0D29DAB8FC00693F6C /* RxSwift */,
 				DAC93F1029DAB97200693F6C /* RIBs */,
+				DAC93F6129E0086C00693F6C /* IQKeyboardManagerSwift */,
 			);
 			productName = Manglendar;
 			productReference = DAC93ED129DAB81000693F6C /* Manglendar.app */;
@@ -394,6 +411,7 @@
 				DAC93F0729DAB8E700693F6C /* XCRemoteSwiftPackageReference "SnapKit" */,
 				DAC93F0A29DAB8FC00693F6C /* XCRemoteSwiftPackageReference "RxSwift" */,
 				DAC93F0F29DAB97200693F6C /* XCRemoteSwiftPackageReference "RIBs" */,
+				DAC93F6029E0086B00693F6C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = DAC93ED229DAB81000693F6C /* Products */;
 			projectDirPath = "";
@@ -445,6 +463,7 @@
 				DAC93F4D29DD4BA600693F6C /* AddEventRouter.swift in Sources */,
 				DAC93F5329DD61F500693F6C /* Date+.swift in Sources */,
 				DAC93F1729DAB9C200693F6C /* SchedularRouter.swift in Sources */,
+				DAC93F6529E017AE00693F6C /* EventViewController.swift in Sources */,
 				DAC93F1829DAB9C200693F6C /* SchedularViewController.swift in Sources */,
 				DAC93F2229DBA70100693F6C /* CalendarCell.swift in Sources */,
 				DAC93F4429DD445E00693F6C /* RootBuilder.swift in Sources */,
@@ -460,6 +479,7 @@
 				DAC93F4F29DD4BA600693F6C /* AddEventBuilder.swift in Sources */,
 				DAC93F2629DC00AA00693F6C /* EventsDetailCell.swift in Sources */,
 				DAC93F3929DD32E400693F6C /* EventDetailRouter.swift in Sources */,
+				DAC93F5F29DFEAA100693F6C /* ScheduleEventManager.swift in Sources */,
 				DAC93F3B29DD32E400693F6C /* EventDetailBuilder.swift in Sources */,
 				DAC93F3A29DD32E400693F6C /* EventDetailViewController.swift in Sources */,
 				DAC93ED529DAB81000693F6C /* AppDelegate.swift in Sources */,
@@ -829,6 +849,14 @@
 				kind = branch;
 			};
 		};
+		DAC93F6029E0086B00693F6C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -856,6 +884,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DAC93F0F29DAB97200693F6C /* XCRemoteSwiftPackageReference "RIBs" */;
 			productName = RIBs;
+		};
+		DAC93F6129E0086C00693F6C /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DAC93F6029E0086B00693F6C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
