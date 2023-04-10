@@ -5,7 +5,7 @@
  - RxSwift, SnapKit, RIPs
 
 # 주요 기능
-<img width="200" height="400" alt="스크린샷 2023-04-07 오후 2 02 45" src="https://user-images.githubusercontent.com/44960073/230545071-25375c9a-ebb2-4ba6-bda3-f8127012f1d9.png"><img width="200" height="400" alt="스크린샷 2023-04-07 오후 2 06 35" src="https://user-images.githubusercontent.com/44960073/230545076-9cbf674e-8a7c-4d21-9d9c-75c5f04dfc97.png"><img width="200" height="400" alt="스크린샷 2023-04-07 오후 2 06 53" src="https://user-images.githubusercontent.com/44960073/230545081-8ffdf805-5351-40a0-8914-e9b50c9735ae.png"><img width="200" height="400" alt="스크린샷 2023-04-07 오후 2 06 12" src="https://user-images.githubusercontent.com/44960073/230545084-d36d06ad-045e-485d-9faa-1084dfa26100.png">
+<img width="200" height="350" alt="스크린샷 2023-04-07 오후 2 02 45" src="https://user-images.githubusercontent.com/44960073/230545071-25375c9a-ebb2-4ba6-bda3-f8127012f1d9.png"><img width="200" height="350" alt="스크린샷 2023-04-10 오후 5 01 47" src="https://user-images.githubusercontent.com/44960073/230856524-d937674e-0555-4f62-8ec7-87056ed9fad4.png"><img width="200" height="350" alt="스크린샷 2023-04-10 오후 5 01 25" src="https://user-images.githubusercontent.com/44960073/230856539-6da6212e-b9e0-49cb-9444-fe7f82e6e8b5.png"><img width="200" height="350" alt="스크린샷 2023-04-10 오후 5 02 10" src="https://user-images.githubusercontent.com/44960073/230856547-d8d163d4-9f42-4fd3-833a-3308dc6e62c9.png">
 
 
  - 일정 추가
