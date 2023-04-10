@@ -51,6 +51,7 @@ class CalendarView: UIView {
             if self.currentMonthIndex > 11 {
                 self.currentMonthIndex = 0
                 self.currentYear += 1
+                ScheduleEventManager.shared.getHolidays(year: self.currentYear)
             }
             self.updateCalendar()
         }).disposed(by: disposeBag)
@@ -65,6 +66,7 @@ class CalendarView: UIView {
             if self.currentMonthIndex < 0 {
                 self.currentMonthIndex = 11
                 self.currentYear -= 1
+                ScheduleEventManager.shared.getHolidays(year: self.currentYear)
             }
             self.updateCalendar()
         }).disposed(by: disposeBag)

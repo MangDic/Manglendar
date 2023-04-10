@@ -12,7 +12,6 @@ class ScheduleEventManager {
     static let shared = ScheduleEventManager()
     let eventsRelay = BehaviorRelay<[String: [ScheduleEvent]]>(value: [:])
     private var eventsArr = [String: [ScheduleEvent]]()
-    private var holidaySet = Set<ScheduleEvent>()
     private let userDefaults = UserDefaults.standard
     private let eventKey = "events"
     
@@ -47,25 +46,36 @@ class ScheduleEventManager {
             let delegate = HolidayXMLParserDelegate()
             parser.delegate = delegate
             parser.parse()
-            let holidays = delegate.holidays
-            
-            for holiday in holidays {
-                self.holidaySet.insert(ScheduleEvent(title: holiday.name,
-                                                     date: Date().convertStringToDate(date: holiday.date),
-                                                     place: "",
-                                                     color: 2))
-            }
             
             DispatchQueue.main.async {
-                for holiday in self.holidaySet {
-                    let key = holiday.date.convertDateToString(type: .key)
+                let holidays = delegate.holidays
+                
+                for holiday in holidays {
+                    let holidayEvent = ScheduleEvent(title: holiday.name,
+                                                     date: Date().convertStringToDate(date: holiday.date),
+                                                     place: "",
+                                                     color: 2)
+                    
+                    let key = holidayEvent.date.convertDateToString(type: .key)
+                    
                     if self.eventsArr[key] == nil {
-                        self.eventsArr[key] = [holiday]
-                    }
-                    else {
-                        self.eventsArr[key]!.append(holiday)
+                        self.eventsArr[key] = [holidayEvent]
+                    } else {
+                        var isDuplicate = false
+                        
+                        for event in self.eventsArr[key]! {
+                            if event.title == holidayEvent.title && event.date == holidayEvent.date {
+                                isDuplicate = true
+                                break
+                            }
+                        }
+                        
+                        if !isDuplicate {
+                            self.eventsArr[key]!.append(holidayEvent)
+                        }
                     }
                 }
+                
                 self.eventsRelay.accept(self.eventsArr)
             }
         }
@@ -93,7 +103,7 @@ class HolidayXMLParserDelegate: NSObject, XMLParserDelegate {
     var isHoliday = false
     var date: String = ""
     var holidayName: String = ""
-
+    
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         if elementName == "locdate" {
             isDate = true
@@ -101,7 +111,7 @@ class HolidayXMLParserDelegate: NSObject, XMLParserDelegate {
             isHoliday = true
         }
     }
-
+    
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         if isDate {
             date = string
@@ -111,7 +121,7 @@ class HolidayXMLParserDelegate: NSObject, XMLParserDelegate {
             isHoliday = false
         }
     }
-
+    
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "item" {
             let holiday = Holiday(date: date, name: holidayName)
