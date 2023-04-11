@@ -7,7 +7,7 @@
 
 import RIBs
 
-protocol SchedularDependency: Dependency, EventDetailDependency, AddEventDependency {
+protocol SchedularDependency: Dependency, EventDetailDependency, AddEventDependency, EventViewDependency {
     // TODO: Declare the set of dependencies required by this RIB, but cannot be
     // created by this RIB.
 }
@@ -36,10 +36,12 @@ final class SchedularBuilder: Builder<SchedularDependency>, SchedularBuildable {
         
         let eventDetailBuilder = EventDetailBuilder(dependency: dependency)
         let addEventBuilder = AddEventBuilder(dependency: dependency)
+        let eventViewBuilder = EventViewBuilder(dependency: dependency)
         
         return SchedularRouter(interactor: interactor,
                                viewController: viewController,
                                eventDetailBuilder: eventDetailBuilder,
-                               addEventBuilder: addEventBuilder)
+                               addEventBuilder: addEventBuilder,
+                               eventViewBuilder: eventViewBuilder)
     }
 }

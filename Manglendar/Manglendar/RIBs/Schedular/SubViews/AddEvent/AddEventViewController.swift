@@ -19,6 +19,10 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
     weak var listener: AddEventPresentableListener?
     
     var disposeBag = DisposeBag()
+    let placeSelectedRelay = PublishRelay<PlaceData>()
+    
+    var selectedPlace: PlaceData? = nil
+    
     var currentBtn: UIButton?
     
     // MARK: - Views
@@ -37,6 +41,13 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
         $0.textColor = #colorLiteral(red: 0.5429155236, green: 0.5429155236, blue: 0.5429155236, alpha: 1)
         $0.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         $0.placeholder = R.String.AddEvent.placePlaceholder
+    }
+    
+    lazy var searchButton = UIButton().then {
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        $0.setTitle(R.String.AddEvent.search, for: .normal)
+        $0.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
+        $0.layer.cornerRadius = 4
     }
     
     lazy var colorStack = UIStackView().then {
@@ -112,11 +123,15 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
             guard let `self` = self else { return }
             let event = ScheduleEvent(title: self.titleField.text ?? R.String.AddEvent.emptyTitleDescription,
                                       date: self.datePicker.date,
-                                      place: self.placeField.text ?? "",
+                                      place: self.selectedPlace,
                                       color: self.currentBtn?.tag ?? 0)
             self.listener?.didTapSaveButton(scheduleEvent: event)
             self.dismiss(animated: true)
         }).disposed(by: disposeBag)
+    }
+    
+    lazy var searchPlaceView = SearchPlaceView().then {
+        $0.isHidden = true
     }
     
     // MARK: - LifeCycle
@@ -140,9 +155,11 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
         
         contentView.addSubviews([titleField,
                                  placeField,
+                                 searchButton,
                                  colorStack,
                                  datePicker,
-                                 buttonStack])
+                                 buttonStack,
+                                 searchPlaceView])
         
         buttonStack.addArrangedSubview(cancelButton)
         buttonStack.addArrangedSubview(saveButton)
@@ -157,7 +174,19 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
         
         placeField.snp.makeConstraints {
             $0.top.equalTo(titleField.snp.bottom).offset(20)
+            $0.leading.equalToSuperview().inset(20)
+        }
+        
+        searchButton.snp.makeConstraints {
+            $0.leading.equalTo(placeField.snp.trailing).offset(10)
+            $0.trailing.equalToSuperview().inset(20)
+            $0.top.bottom.equalTo(placeField)
+            $0.width.equalTo(60)
+        }
+        
+        searchPlaceView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(20)
+            $0.top.equalTo(placeField.snp.bottom).offset(5)
         }
         
         colorStack.snp.makeConstraints {
@@ -179,6 +208,8 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
     
     // MARK: - Binding
     private func bind() {
+        searchPlaceView.setupDI(placeSelectedRelay)
+        
         titleField.rx.text
             .map{ $0 != "" }
             .bind(to: saveButton.rx.isEnabled)
@@ -189,6 +220,28 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
                 guard let `self` = self else { return }
                 self.saveButton.alpha = text == "" ? 0.6 : 1
                 self.saveButton.backgroundColor = text == "" ? #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1) : #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
+            }).disposed(by: disposeBag)
+        
+        placeSelectedRelay.subscribe(onNext: { [weak self] place in
+            guard let `self` = self else { return }
+            self.searchPlaceView.isHidden = true
+            self.placeField.text = place.place_name
+            self.selectedPlace = place
+        }).disposed(by: disposeBag)
+        
+        placeField.rx.text
+            .subscribe(onNext: { [weak self] text in
+                guard let `self` = self else { return }
+                self.searchButton.isEnabled = text != ""
+                self.searchButton.backgroundColor = text == "" ? #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1) : #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
+            }).disposed(by: disposeBag)
+        
+        searchButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                guard let `self` = self else { return }
+                PlaceSearchService.shared.searchPlace(place: self.placeField.text ?? "")
+                self.searchPlaceView.isHidden = false
+                self.view.endEditing(true)
             }).disposed(by: disposeBag)
     }
     
@@ -215,5 +268,6 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         view.endEditing(true)
+        searchPlaceView.isHidden = true
     }
 }

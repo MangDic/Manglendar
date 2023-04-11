@@ -13,6 +13,9 @@ class CommingListCell: UICollectionViewCell {
     static let id = "CommingListCell"
     var disposeBag = DisposeBag()
     
+    var onEditButtonTapped: () -> () = {}
+    var onDeleteButtonTapped: () -> () = {}
+    
     // MARK: Views
     lazy var containerView = UIView().then {
         $0.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.7857435958, blue: 0.7203170327, alpha: 1)
@@ -52,6 +55,7 @@ class CommingListCell: UICollectionViewCell {
         $0.rx.tap.subscribe(onNext: { [weak self] in
             guard let `self` = self else { return }
             self.menuStack.isHidden = true
+            self.onEditButtonTapped()
         }).disposed(by: disposeBag)
     }
     
@@ -62,6 +66,7 @@ class CommingListCell: UICollectionViewCell {
         $0.rx.tap.subscribe(onNext: { [weak self] in
             guard let `self` = self else { return }
             self.menuStack.isHidden = true
+            self.onDeleteButtonTapped()
         }).disposed(by: disposeBag)
     }
     

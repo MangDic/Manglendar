@@ -10,6 +10,6 @@ import Foundation
 struct ScheduleEvent: Codable, Hashable {
     let title: String
     let date: Date
-    let place: String
+    let place: PlaceData?
     let color: Int
 }

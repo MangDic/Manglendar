@@ -23,7 +23,10 @@ extension R.String {
         static let placePlaceholder = "장소를 입력하세요. (선택)"
         static let save = "저장"
         static let cancel = "취소"
+        static let search = "검색"
+        static let select = "선택"
         static let emptyTitleDescription = "제목이 없습니다."
+        static let emptyPlaceDescription = "검색 결과가 없습니다 :("
     }
     
     struct EventDetail {
@@ -45,6 +48,12 @@ extension R.String {
     struct CommingEventList {
         static let title = "다가오는 일정"
         static let dataEmptyDescription = "다가오는 일정이 없습니다 :(\n일정을 추가해보세요!"
+    }
+    
+    struct EventView {
+        static let edit = "수정"
+        static let delete = "삭제"
+        static let emptyPlace = "등록한 장소가 없습니다."
     }
 }
 

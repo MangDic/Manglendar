@@ -57,7 +57,7 @@ class EventsDetailCell: UITableViewCell {
         containerView.backgroundColor = R.Color.colorArr[data.color]
         titleLabel.text = data.title
         timeLabel.text = R.String.EventDetail.time(timeValue.0, timeValue.1)
-        placeLabel.text = data.place == "" ? R.String.EventDetail.placeEmpty : R.String.EventDetail.place(data.place)
+        placeLabel.text = data.place == nil ? R.String.EventDetail.placeEmpty : R.String.EventDetail.place(data.place!.place_name)
     }
     
     private func setupLayout() {

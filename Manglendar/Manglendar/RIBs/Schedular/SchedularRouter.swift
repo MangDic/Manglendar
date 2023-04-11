@@ -8,27 +8,32 @@
 import RIBs
 import Foundation
 
-protocol SchedularInteractable: Interactable, EventDetailListener, AddEventListener {
+protocol SchedularInteractable: Interactable, EventDetailListener, AddEventListener, EventViewListener {
     var router: SchedularRouting? { get set }
     var listener: SchedularListener? { get set }
 }
 
 protocol SchedularViewControllable: ViewControllable {
     func replaceModal(viewController: ViewControllable?)
+    func pushViewController(viewController: ViewControllable?)
+    func popToRootViewController()
 }
 
 final class SchedularRouter: ViewableRouter<SchedularInteractable, SchedularViewControllable>, SchedularRouting {
     let eventDetailBuilder: EventDetailBuilder
     let addEventBuilder: AddEventBuilder
+    let eventViewBuilder: EventViewBuilder
     
     private var currentChild: ViewableRouting?
     
     init(interactor: SchedularInteractable,
          viewController: SchedularViewControllable,
          eventDetailBuilder: EventDetailBuilder,
-         addEventBuilder: AddEventBuilder) {
+         addEventBuilder: AddEventBuilder,
+         eventViewBuilder: EventViewBuilder) {
         self.eventDetailBuilder = eventDetailBuilder
         self.addEventBuilder = addEventBuilder
+        self.eventViewBuilder = eventViewBuilder
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
@@ -55,7 +60,17 @@ final class SchedularRouter: ViewableRouter<SchedularInteractable, SchedularView
         viewController.replaceModal(viewController: addEventRouter.viewControllable)
         currentChild = addEventRouter
     }
-
+    
+    func navigateToEventView(event: ScheduleEvent) {
+        let eventViewRouter = eventViewBuilder.build(withListener: interactor, event: event)
+        attachChild(eventViewRouter)
+        viewController.pushViewController(viewController: eventViewRouter.viewControllable)
+        currentChild = eventViewRouter
+    }
+    
+    func popToRootViewController() {
+        viewController.popToRootViewController()
+    }
     
     private func detachCurrentChild() {
         if let currentChild = currentChild {

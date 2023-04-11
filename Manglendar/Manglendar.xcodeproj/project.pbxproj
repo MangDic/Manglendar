@@ -46,7 +46,14 @@
 		DAC93F5C29DFD91900693F6C /* CommingListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F5B29DFD91900693F6C /* CommingListCell.swift */; };
 		DAC93F5F29DFEAA100693F6C /* ScheduleEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F5E29DFEAA100693F6C /* ScheduleEventManager.swift */; };
 		DAC93F6229E0086C00693F6C /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DAC93F6129E0086C00693F6C /* IQKeyboardManagerSwift */; };
-		DAC93F6529E017AE00693F6C /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F6429E017AE00693F6C /* EventViewController.swift */; };
+		DAC93F6B29E4035D00693F6C /* EventViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F6729E4035D00693F6C /* EventViewRouter.swift */; };
+		DAC93F6C29E4035D00693F6C /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F6829E4035D00693F6C /* EventViewController.swift */; };
+		DAC93F6D29E4035D00693F6C /* EventViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F6929E4035D00693F6C /* EventViewBuilder.swift */; };
+		DAC93F6E29E4035D00693F6C /* EventViewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F6A29E4035D00693F6C /* EventViewInteractor.swift */; };
+		DAC93F7429E4E74A00693F6C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DAC93F7329E4E74A00693F6C /* Alamofire */; };
+		DAC93F7629E4E83300693F6C /* PlaceSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F7529E4E83300693F6C /* PlaceSearchService.swift */; };
+		DAC93F7929E4ECA300693F6C /* SearchPlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F7829E4ECA300693F6C /* SearchPlaceView.swift */; };
+		DAC93F7B29E53DBE00693F6C /* PlaceSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F7A29E53DBE00693F6C /* PlaceSearchResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,7 +111,13 @@
 		DAC93F5829DFB49600693F6C /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		DAC93F5B29DFD91900693F6C /* CommingListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommingListCell.swift; sourceTree = "<group>"; };
 		DAC93F5E29DFEAA100693F6C /* ScheduleEventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEventManager.swift; sourceTree = "<group>"; };
-		DAC93F6429E017AE00693F6C /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		DAC93F6729E4035D00693F6C /* EventViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewRouter.swift; sourceTree = "<group>"; };
+		DAC93F6829E4035D00693F6C /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		DAC93F6929E4035D00693F6C /* EventViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewBuilder.swift; sourceTree = "<group>"; };
+		DAC93F6A29E4035D00693F6C /* EventViewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewInteractor.swift; sourceTree = "<group>"; };
+		DAC93F7529E4E83300693F6C /* PlaceSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSearchService.swift; sourceTree = "<group>"; };
+		DAC93F7829E4ECA300693F6C /* SearchPlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceView.swift; sourceTree = "<group>"; };
+		DAC93F7A29E53DBE00693F6C /* PlaceSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSearchResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +126,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAC93F1129DAB97200693F6C /* RIBs in Frameworks */,
+				DAC93F7429E4E74A00693F6C /* Alamofire in Frameworks */,
 				DAC93F0C29DAB8FC00693F6C /* RxCocoa in Frameworks */,
 				DAC93F0629DAB8D200693F6C /* Then in Frameworks */,
 				DAC93F0E29DAB8FC00693F6C /* RxSwift in Frameworks */,
@@ -202,11 +216,11 @@
 		DAC93F1B29DAB9FA00693F6C /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				DAC93F6629E4035000693F6C /* EventView */,
 				DAC93F5A29DFD90400693F6C /* CommingList */,
 				DAC93F4829DD4B1800693F6C /* AddEvent */,
 				DAC93F2C29DD32A500693F6C /* EventDetail */,
 				DAC93F2029DBA6EF00693F6C /* Calendar */,
-				DAC93F6429E017AE00693F6C /* EventViewController.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -224,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				DAC93F2A29DC19D600693F6C /* ScheduleEvent.swift */,
+				DAC93F7A29E53DBE00693F6C /* PlaceSearchResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -254,6 +269,7 @@
 		DAC93F4829DD4B1800693F6C /* AddEvent */ = {
 			isa = PBXGroup;
 			children = (
+				DAC93F7729E4EC9400693F6C /* SubView */,
 				DAC93F4929DD4BA600693F6C /* AddEventRouter.swift */,
 				DAC93F4A29DD4BA600693F6C /* AddEventViewController.swift */,
 				DAC93F4B29DD4BA600693F6C /* AddEventBuilder.swift */,
@@ -306,8 +322,28 @@
 			children = (
 				DAC93F5829DFB49600693F6C /* Resource.swift */,
 				DAC93F5E29DFEAA100693F6C /* ScheduleEventManager.swift */,
+				DAC93F7529E4E83300693F6C /* PlaceSearchService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		DAC93F6629E4035000693F6C /* EventView */ = {
+			isa = PBXGroup;
+			children = (
+				DAC93F6729E4035D00693F6C /* EventViewRouter.swift */,
+				DAC93F6829E4035D00693F6C /* EventViewController.swift */,
+				DAC93F6929E4035D00693F6C /* EventViewBuilder.swift */,
+				DAC93F6A29E4035D00693F6C /* EventViewInteractor.swift */,
+			);
+			path = EventView;
+			sourceTree = "<group>";
+		};
+		DAC93F7729E4EC9400693F6C /* SubView */ = {
+			isa = PBXGroup;
+			children = (
+				DAC93F7829E4ECA300693F6C /* SearchPlaceView.swift */,
+			);
+			path = SubView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,6 +369,7 @@
 				DAC93F0D29DAB8FC00693F6C /* RxSwift */,
 				DAC93F1029DAB97200693F6C /* RIBs */,
 				DAC93F6129E0086C00693F6C /* IQKeyboardManagerSwift */,
+				DAC93F7329E4E74A00693F6C /* Alamofire */,
 			);
 			productName = Manglendar;
 			productReference = DAC93ED129DAB81000693F6C /* Manglendar.app */;
@@ -412,6 +449,7 @@
 				DAC93F0A29DAB8FC00693F6C /* XCRemoteSwiftPackageReference "RxSwift" */,
 				DAC93F0F29DAB97200693F6C /* XCRemoteSwiftPackageReference "RIBs" */,
 				DAC93F6029E0086B00693F6C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				DAC93F7229E4E74A00693F6C /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = DAC93ED229DAB81000693F6C /* Products */;
 			projectDirPath = "";
@@ -463,9 +501,12 @@
 				DAC93F4D29DD4BA600693F6C /* AddEventRouter.swift in Sources */,
 				DAC93F5329DD61F500693F6C /* Date+.swift in Sources */,
 				DAC93F1729DAB9C200693F6C /* SchedularRouter.swift in Sources */,
-				DAC93F6529E017AE00693F6C /* EventViewController.swift in Sources */,
 				DAC93F1829DAB9C200693F6C /* SchedularViewController.swift in Sources */,
 				DAC93F2229DBA70100693F6C /* CalendarCell.swift in Sources */,
+				DAC93F7929E4ECA300693F6C /* SearchPlaceView.swift in Sources */,
+				DAC93F6C29E4035D00693F6C /* EventViewController.swift in Sources */,
+				DAC93F6E29E4035D00693F6C /* EventViewInteractor.swift in Sources */,
+				DAC93F7629E4E83300693F6C /* PlaceSearchService.swift in Sources */,
 				DAC93F4429DD445E00693F6C /* RootBuilder.swift in Sources */,
 				DAC93F3C29DD32E400693F6C /* EventDetailInteractor.swift in Sources */,
 				DAC93F1F29DABA9E00693F6C /* CalendarView.swift in Sources */,
@@ -475,12 +516,15 @@
 				DAC93F1A29DAB9C200693F6C /* SchedularInteractor.swift in Sources */,
 				DAC93F5C29DFD91900693F6C /* CommingListCell.swift in Sources */,
 				DAC93F4529DD445E00693F6C /* RootInteractor.swift in Sources */,
+				DAC93F6D29E4035D00693F6C /* EventViewBuilder.swift in Sources */,
 				DAC93F5029DD4BA600693F6C /* AddEventInteractor.swift in Sources */,
 				DAC93F4F29DD4BA600693F6C /* AddEventBuilder.swift in Sources */,
 				DAC93F2629DC00AA00693F6C /* EventsDetailCell.swift in Sources */,
 				DAC93F3929DD32E400693F6C /* EventDetailRouter.swift in Sources */,
 				DAC93F5F29DFEAA100693F6C /* ScheduleEventManager.swift in Sources */,
 				DAC93F3B29DD32E400693F6C /* EventDetailBuilder.swift in Sources */,
+				DAC93F6B29E4035D00693F6C /* EventViewRouter.swift in Sources */,
+				DAC93F7B29E53DBE00693F6C /* PlaceSearchResult.swift in Sources */,
 				DAC93F3A29DD32E400693F6C /* EventDetailViewController.swift in Sources */,
 				DAC93ED529DAB81000693F6C /* AppDelegate.swift in Sources */,
 				DAC93F5629DFB1AF00693F6C /* UIView+.swift in Sources */,
@@ -857,6 +901,14 @@
 				kind = branch;
 			};
 		};
+		DAC93F7229E4E74A00693F6C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -889,6 +941,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DAC93F6029E0086B00693F6C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		DAC93F7329E4E74A00693F6C /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DAC93F7229E4E74A00693F6C /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

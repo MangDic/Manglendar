@@ -13,7 +13,9 @@ import Foundation
 protocol SchedularRouting: ViewableRouting {
     func navigateToDetailScreen(events: [ScheduleEvent], date: Date)
     func navigateToAddEventScreen(date: Date?)
+    func navigateToEventView(event: ScheduleEvent)
     func routeToAddEventScreen(date: Date?)
+    func popToRootViewController()
 }
 
 protocol SchedularPresentable: Presentable {
@@ -76,6 +78,14 @@ final class SchedularInteractor: PresentableInteractor<SchedularPresentable>, Sc
         ScheduleEventManager.shared.saveEvents(events: events)
         eventsRelay.accept(events)
         setCommingEvent()
+    }
+    
+    func selectCommingEventCell(event: ScheduleEvent) {
+        router?.navigateToEventView(event: event)
+    }
+    
+    func popToRootViewController() {
+        router?.popToRootViewController()
     }
     
     // MARK: Binding

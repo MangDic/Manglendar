@@ -16,6 +16,8 @@ class CommingEventListView: UIView {
     var disposeBag = DisposeBag()
     
     var events = BehaviorRelay<[ScheduleEvent]>(value: [])
+    /// 다가오는 일정 셀 클릭 이벤트
+    var selectedEventRelay = PublishRelay<ScheduleEvent>()
     
     // MARK: Views
     lazy var titleLabel = UILabel().then {
@@ -58,8 +60,13 @@ class CommingEventListView: UIView {
     }
     
     // MARK: Dependency Injection
-    func setupDI(_ commingEventsRelay: BehaviorRelay<[ScheduleEvent]>?) {
+    func setupDI(_ commingEventsRelay: BehaviorRelay<[ScheduleEvent]>?) -> Self {
         commingEventsRelay?.bind(to: events).disposed(by: disposeBag)
+        return self
+    }
+    
+    func setupDI(_ selectedEventRelay: PublishRelay<ScheduleEvent>) {
+        self.selectedEventRelay.bind(to: selectedEventRelay).disposed(by: disposeBag)
     }
     
     // MARK: Setup Layout
@@ -89,6 +96,12 @@ class CommingEventListView: UIView {
         events.bind(to: collectionView.rx.items(cellIdentifier: CommingListCell.id)) { index, item, cell in
             guard let cell = cell as? CommingListCell else { return }
             cell.configure(event: item)
+            cell.onEditButtonTapped = {
+                
+            }
+            cell.onDeleteButtonTapped = {
+                ScheduleEventManager.shared.removeEvent(event: item)
+            }
         }.disposed(by: disposeBag)
         
         events.subscribe(onNext: { [weak self] data in
@@ -97,5 +110,12 @@ class CommingEventListView: UIView {
             self.titleLabel.isHidden = data.count == 0
             self.dataEmptyDescriptionLabel.isHidden = data.count != 0
         }).disposed(by: disposeBag)
+        
+        collectionView.rx
+            .modelSelected(ScheduleEvent.self)
+            .subscribe(onNext: { [weak self] item in
+                guard let `self` = self else { return }
+                self.selectedEventRelay.accept(item)
+            }).disposed(by: disposeBag)
     }
 }

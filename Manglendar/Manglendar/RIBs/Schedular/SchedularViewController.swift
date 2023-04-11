@@ -12,6 +12,7 @@ import UIKit
 
 protocol SchedularPresentableListener: AnyObject {
     func didTapCalendarCell(date: Date)
+    func selectCommingEventCell(event: ScheduleEvent)
     func didTapAddEventButton()
     var eventsRelay: BehaviorRelay<[String:[ScheduleEvent]]> { get }
     var commingEventsRelay: BehaviorRelay<[ScheduleEvent]> { get }
@@ -22,7 +23,8 @@ final class SchedularViewController: UIViewController, SchedularPresentable, Sch
     weak var listener: SchedularPresentableListener?
     
     var disposeBag = DisposeBag()
-    let selectedRelay = PublishRelay<Date>()
+    let selectedScheduleRelay = PublishRelay<Date>()
+    let selectedCommingEventRelay = PublishRelay<ScheduleEvent>()
     let reloadTrigger = PublishRelay<Void>()
     
     private var targetViewController: ViewControllable?
@@ -76,14 +78,23 @@ final class SchedularViewController: UIViewController, SchedularPresentable, Sch
     private func bind() {
         calendarView
             .setupDI(listener?.eventsRelay)
-            .setupDI(selectedRelay)
+            .setupDI(selectedScheduleRelay)
         
-        commingEventListView.setupDI(listener?.commingEventsRelay)
+        commingEventListView
+            .setupDI(listener?.commingEventsRelay)
+            .setupDI(selectedCommingEventRelay)
         
-        selectedRelay.subscribe(onNext: { [weak self] date in
-            guard let `self` = self else { return }
-            self.listener?.didTapCalendarCell(date: date)
-        }).disposed(by: disposeBag)
+        selectedScheduleRelay
+            .subscribe(onNext: { [weak self] date in
+                guard let `self` = self else { return }
+                self.listener?.didTapCalendarCell(date: date)
+            }).disposed(by: disposeBag)
+        
+        selectedCommingEventRelay
+            .subscribe(onNext: { [weak self] event in
+                guard let `self` = self else { return }
+                self.listener?.selectCommingEventCell(event: event)
+            }).disposed(by: disposeBag)
     }
     
     // MARK: - SchedularViewControllable
@@ -106,6 +117,16 @@ final class SchedularViewController: UIViewController, SchedularPresentable, Sch
         } else {
             presentTargetViewController()
         }
+    }
+    
+    func pushViewController(viewController: ViewControllable?) {
+        if let vc = viewController?.uiviewController {
+            navigationController?.pushViewController(vc, animated: false)
+        }
+    }
+    
+    func popToRootViewController() {
+        navigationController?.popViewController(animated: false)
     }
     
     private func presentTargetViewController() {

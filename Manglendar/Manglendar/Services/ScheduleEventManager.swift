@@ -53,7 +53,7 @@ class ScheduleEventManager {
                 for holiday in holidays {
                     let holidayEvent = ScheduleEvent(title: holiday.name,
                                                      date: Date().convertStringToDate(date: holiday.date),
-                                                     place: "",
+                                                     place: nil,
                                                      color: 2)
                     
                     let key = holidayEvent.date.convertDateToString(type: .key)
@@ -89,6 +89,15 @@ class ScheduleEventManager {
         }
         catch {
             print("Error encoding events: \(error)")
+        }
+    }
+    
+    func removeEvent(event: ScheduleEvent) {
+        let key = event.date.convertDateToString(type: .key)
+        if let events = eventsArr[key], let index = events.firstIndex(where: { $0 == event }) {
+            eventsArr[key]?.remove(at: index)
+            eventsRelay.accept(eventsArr)
+            saveEvents(events: eventsArr)
         }
     }
     
