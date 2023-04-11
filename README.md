@@ -15,6 +15,11 @@
  - 약속 장소 경로 검색 (예정)
 
 # History
+## 2023. 04. 11
+ <img width="200" height="350" alt="스크린샷 2023-04-11 오후 4 08 19" src="https://user-images.githubusercontent.com/44960073/231083176-8c54e210-8d31-4e97-bd06-acbe3f43cae2.png"> <img width="200" height="350" alt="스크린샷 2023-04-11 오후 4 08 33" src="https://user-images.githubusercontent.com/44960073/231083180-4cfda9aa-a879-466e-9786-97772dce6b80.png">
+ - 카카오맵 REST API 연동 (장소 검색)
+ - CLLocationManager를 추가해서 현재 위치를 가져오고, API 요청 시 그 값을 쿼리에 추가하여 거리순으로 가져왔다! (거리순 쿼리는 "sort": "distance")
+
 ## 2023. 04. 10
  - 다가오는 일정 더보기 버튼 추가 (수정 및 삭제)
  - 공휴일 API 연동 (일정들 가져올 때 중복체크)
