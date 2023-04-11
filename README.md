@@ -1,11 +1,11 @@
-# Manglendar (이름 미정)
- - RIPs 구조를 이해하기 위한 예제 프로젝트입니다.
+# Manglendar
+ - RIBs 구조를 이해하기 위한 예제 프로젝트입니다.
  
 # 사용 기술
  - RxSwift, SnapKit, RIPs
 
 # 주요 기능
-<img width="200" height="400" alt="스크린샷 2023-04-07 오후 2 02 45" src="https://user-images.githubusercontent.com/44960073/230545071-25375c9a-ebb2-4ba6-bda3-f8127012f1d9.png"><img width="200" height="400" alt="스크린샷 2023-04-07 오후 2 06 35" src="https://user-images.githubusercontent.com/44960073/230545076-9cbf674e-8a7c-4d21-9d9c-75c5f04dfc97.png"><img width="200" height="400" alt="스크린샷 2023-04-07 오후 2 06 53" src="https://user-images.githubusercontent.com/44960073/230545081-8ffdf805-5351-40a0-8914-e9b50c9735ae.png"><img width="200" height="400" alt="스크린샷 2023-04-07 오후 2 06 12" src="https://user-images.githubusercontent.com/44960073/230545084-d36d06ad-045e-485d-9faa-1084dfa26100.png">
+<img width="200" height="350" alt="스크린샷 2023-04-07 오후 2 02 45" src="https://user-images.githubusercontent.com/44960073/230545071-25375c9a-ebb2-4ba6-bda3-f8127012f1d9.png"><img width="200" height="350" alt="스크린샷 2023-04-10 오후 5 01 47" src="https://user-images.githubusercontent.com/44960073/230856524-d937674e-0555-4f62-8ec7-87056ed9fad4.png"><img width="200" height="350" alt="스크린샷 2023-04-10 오후 5 01 25" src="https://user-images.githubusercontent.com/44960073/230856539-6da6212e-b9e0-49cb-9444-fe7f82e6e8b5.png"><img width="200" height="350" alt="스크린샷 2023-04-10 오후 5 02 10" src="https://user-images.githubusercontent.com/44960073/230856547-d8d163d4-9f42-4fd3-833a-3308dc6e62c9.png">
 
 
  - 일정 추가
@@ -15,7 +15,11 @@
  - 약속 장소 경로 검색 (예정)
 
 # History
-
+## 2023. 04. 10
+ - 다가오는 일정 더보기 버튼 추가 (수정 및 삭제)
+ - 공휴일 API 연동 (일정들 가져올 때 중복체크)
+ - 다가오늘 일정 컬렉션뷰 크기를 셀에 맞춤 (estimatedItemSize = UICollectionViewFlowLayout.automaticSize)
+ 
 ## 2023. 04. 07
  - CommingEventListView 데이터 바인딩
  - AddEventView titleField 바인딩 추가 (텍스트 유무에 따라 저장 버튼 isEnabled과 백그라운드 색 설정) 
