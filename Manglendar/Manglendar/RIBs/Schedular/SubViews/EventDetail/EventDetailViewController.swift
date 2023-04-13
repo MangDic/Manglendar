@@ -120,6 +120,7 @@ final class EventDetailViewController: UIViewController, EventDetailPresentable,
             .modelSelected(ScheduleEvent.self)
             .subscribe(onNext: { [weak self] event in
                 guard let `self` = self else { return }
+                if event.eventType == .hoilday_event { return }
                 self.listener?.didTapEvent(event: event)
             }).disposed(by: disposeBag)
     }

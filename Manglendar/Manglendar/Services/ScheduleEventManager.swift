@@ -17,7 +17,6 @@ class ScheduleEventManager {
     
     private init() {
         loadEvents()
-        getHolidays(year: 2023)
     }
     
     /// UserDefaults에 저장된 일정들을 가져옵니다.
@@ -37,7 +36,8 @@ class ScheduleEventManager {
     /// API를 사용하여 공휴일 데이터를 가져옵니다. (XML)
     func getHolidays(year: Int) {
         let apiKey = "GzVslgn%2BgMpKn90xZ5QetTQxeuOU9iT7Dl05LHqFt2ZiU3XU4BDElQFEt9HyCruoDyCjcQDTI9CK2siJNisQqw%3D%3D"
-        let urlString = "http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getHoliDeInfo?solYear=\(year)&ServiceKey=\(apiKey)&type=json"
+        let urlString = "http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getHoliDeInfo?solYear=\(year)&numOfRows=100&ServiceKey=\(apiKey)&type=json"
+
         let url = URL(string: urlString)!
         let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
             guard let `self` = self else { return }
@@ -49,9 +49,11 @@ class ScheduleEventManager {
             
             DispatchQueue.main.async {
                 let holidays = delegate.holidays
-                
+                print(holidays)
                 for holiday in holidays {
-                    let holidayEvent = ScheduleEvent(title: holiday.name,
+                    if holiday.name == "1" { continue }
+                    let holidayEvent = ScheduleEvent(eventType: .hoilday_event,
+                                                     title: holiday.name,
                                                      date: Date().convertStringToDate(date: holiday.date),
                                                      place: nil,
                                                      color: 2)

@@ -185,6 +185,7 @@ class CalendarView: UIView {
         calendar.timeZone = TimeZone(identifier: "Asia/Seoul") ?? calendar.timeZone
         currentMonthIndex = calendar.component(.month, from: Date()) - 1
         currentYear = calendar.component(.year, from: Date())
+        ScheduleEventManager.shared.getHolidays(year: currentYear)
         
         monthLabel.text = R.String.Calendar.month(currentYear, months[currentMonthIndex])
         calculateDaysInMonth()

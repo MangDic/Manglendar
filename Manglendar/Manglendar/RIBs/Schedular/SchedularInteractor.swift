@@ -119,6 +119,6 @@ final class SchedularInteractor: PresentableInteractor<SchedularPresentable>, Sc
         for events in sortedEvent {
             arr += events
         }
-        commingEventsRelay.accept(arr)
+        commingEventsRelay.accept(arr.filter({ $0.eventType == .general_event }))
     }
 }

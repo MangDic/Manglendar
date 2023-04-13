@@ -122,7 +122,8 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         $0.rx.tap.subscribe(onNext: { [weak self] in
             guard let `self` = self else { return }
-            let event = ScheduleEvent(title: self.titleField.text ?? R.String.AddEvent.emptyTitleDescription,
+            let event = ScheduleEvent(eventType: .general_event,
+                                      title: self.titleField.text ?? R.String.AddEvent.emptyTitleDescription,
                                       date: self.datePicker.date,
                                       place: self.selectedPlace,
                                       color: self.currentBtn?.tag ?? 0)
