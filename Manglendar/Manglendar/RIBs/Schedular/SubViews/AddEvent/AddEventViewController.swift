@@ -255,6 +255,8 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
         titleField.text = event.title
         placeField.text = event.place?.place_name
         datePicker.date = event.date
+        selectedPlace = event.place
+        
         let colorIndex = event.color
         if let colorButton = colorStack.arrangedSubviews[colorIndex] as? UIButton {
             changeColor(tag: colorIndex, btn: colorButton)
