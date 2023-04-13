@@ -49,7 +49,6 @@ class ScheduleEventManager {
             
             DispatchQueue.main.async {
                 let holidays = delegate.holidays
-                print(holidays)
                 for holiday in holidays {
                     if holiday.name == "1" { continue }
                     let holidayEvent = ScheduleEvent(eventType: .hoilday_event,
@@ -78,8 +77,10 @@ class ScheduleEventManager {
                     }
                 }
                 
+                self.saveEvents(events: self.eventsArr)
                 self.eventsRelay.accept(self.eventsArr)
             }
+
         }
         task.resume()
     }
