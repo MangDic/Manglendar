@@ -96,12 +96,6 @@ class CommingEventListView: UIView {
         events.bind(to: collectionView.rx.items(cellIdentifier: CommingListCell.id)) { index, item, cell in
             guard let cell = cell as? CommingListCell else { return }
             cell.configure(event: item)
-            cell.onEditButtonTapped = {
-                
-            }
-            cell.onDeleteButtonTapped = {
-                ScheduleEventManager.shared.removeEvent(event: item)
-            }
         }.disposed(by: disposeBag)
         
         events.subscribe(onNext: { [weak self] data in

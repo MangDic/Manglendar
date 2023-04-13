@@ -99,9 +99,9 @@ class ScheduleEventManager {
         let key = event.date.convertDateToString(type: .key)
         if let events = eventsArr[key], let index = events.firstIndex(where: { $0 == event }) {
             eventsArr[key]?.remove(at: index)
-            eventsRelay.accept(eventsArr)
-            saveEvents(events: eventsArr)
         }
+        eventsRelay.accept(eventsArr)
+        saveEvents(events: eventsArr)
     }
     
     func removeEvents() {

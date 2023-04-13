@@ -80,7 +80,7 @@ class CalendarView: UIView {
         $0.minimumLineSpacing = 0
     }
     
-    private lazy var gridView = UICollectionView(frame: .zero, collectionViewLayout: layout).then {
+    lazy var gridView = UICollectionView(frame: .zero, collectionViewLayout: layout).then {
         $0.backgroundColor = .clear
         $0.showsVerticalScrollIndicator = false
         $0.showsHorizontalScrollIndicator = false

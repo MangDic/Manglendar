@@ -52,7 +52,10 @@ extension R.String {
     
     struct EventView {
         static let edit = "수정"
+        static let cancel = "취소"
         static let delete = "삭제"
+        static let deleteTitle = "이벤트 삭제"
+        static let deleteDescription = "이 이벤트를 삭제하시겠습니까?"
         static let emptyPlace = "등록한 장소가 없습니다."
     }
 }

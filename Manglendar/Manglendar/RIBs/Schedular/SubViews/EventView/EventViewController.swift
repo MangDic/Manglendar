@@ -17,7 +17,7 @@ protocol EventViewPresentableListener: AnyObject {
 }
 
 final class EventViewController: UIViewController, EventViewPresentable, EventViewViewControllable {
-
+    
     weak var listener: EventViewPresentableListener?
     
     var disposeBag = DisposeBag()
@@ -66,9 +66,26 @@ final class EventViewController: UIViewController, EventViewPresentable, EventVi
         $0.rx.tap.subscribe(onNext: { [weak self] in
             guard let `self` = self else { return }
             guard let event = self.event else { return }
-            self.listener?.didTapDeleteButton(event: event)
+            
+            let alertController = UIAlertController(title: R.String.EventView.deleteTitle,
+                                                    message: R.String.EventView.deleteDescription,
+                                                    preferredStyle: .alert)
+            
+            let cancelAction = UIAlertAction(title: R.String.EventView.cancel,
+                                             style: .cancel, handler: nil)
+            let deleteAction = UIAlertAction(title: R.String.EventView.delete,
+                                             style: .destructive) { _ in
+                self.listener?.didTapDeleteButton(event: event)
+            }
+            
+            alertController.addAction(cancelAction)
+            alertController.addAction(deleteAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+            
         }).disposed(by: disposeBag)
     }
+    
     
     lazy var editButton = UIButton().then {
         $0.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
