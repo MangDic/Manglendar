@@ -54,6 +54,8 @@
 		DAC93F7629E4E83300693F6C /* PlaceSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F7529E4E83300693F6C /* PlaceSearchService.swift */; };
 		DAC93F7929E4ECA300693F6C /* SearchPlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F7829E4ECA300693F6C /* SearchPlaceView.swift */; };
 		DAC93F7B29E53DBE00693F6C /* PlaceSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F7A29E53DBE00693F6C /* PlaceSearchResult.swift */; };
+		DAC93F7D29E63A1700693F6C /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC93F7C29E63A1700693F6C /* NavigationView.swift */; };
+		DAC93F8029E650E500693F6C /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = DAC93F7F29E650E500693F6C /* SwiftyJSON */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +120,7 @@
 		DAC93F7529E4E83300693F6C /* PlaceSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSearchService.swift; sourceTree = "<group>"; };
 		DAC93F7829E4ECA300693F6C /* SearchPlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceView.swift; sourceTree = "<group>"; };
 		DAC93F7A29E53DBE00693F6C /* PlaceSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSearchResult.swift; sourceTree = "<group>"; };
+		DAC93F7C29E63A1700693F6C /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +130,7 @@
 			files = (
 				DAC93F1129DAB97200693F6C /* RIBs in Frameworks */,
 				DAC93F7429E4E74A00693F6C /* Alamofire in Frameworks */,
+				DAC93F8029E650E500693F6C /* SwiftyJSON in Frameworks */,
 				DAC93F0C29DAB8FC00693F6C /* RxCocoa in Frameworks */,
 				DAC93F0629DAB8D200693F6C /* Then in Frameworks */,
 				DAC93F0E29DAB8FC00693F6C /* RxSwift in Frameworks */,
@@ -323,6 +327,7 @@
 				DAC93F5829DFB49600693F6C /* Resource.swift */,
 				DAC93F5E29DFEAA100693F6C /* ScheduleEventManager.swift */,
 				DAC93F7529E4E83300693F6C /* PlaceSearchService.swift */,
+				DAC93F7C29E63A1700693F6C /* NavigationView.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -370,6 +375,7 @@
 				DAC93F1029DAB97200693F6C /* RIBs */,
 				DAC93F6129E0086C00693F6C /* IQKeyboardManagerSwift */,
 				DAC93F7329E4E74A00693F6C /* Alamofire */,
+				DAC93F7F29E650E500693F6C /* SwiftyJSON */,
 			);
 			productName = Manglendar;
 			productReference = DAC93ED129DAB81000693F6C /* Manglendar.app */;
@@ -450,6 +456,7 @@
 				DAC93F0F29DAB97200693F6C /* XCRemoteSwiftPackageReference "RIBs" */,
 				DAC93F6029E0086B00693F6C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				DAC93F7229E4E74A00693F6C /* XCRemoteSwiftPackageReference "Alamofire" */,
+				DAC93F7E29E650E500693F6C /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = DAC93ED229DAB81000693F6C /* Products */;
 			projectDirPath = "";
@@ -512,6 +519,7 @@
 				DAC93F1F29DABA9E00693F6C /* CalendarView.swift in Sources */,
 				DAC93F5929DFB49600693F6C /* Resource.swift in Sources */,
 				DAC93F4229DD445E00693F6C /* RootRouter.swift in Sources */,
+				DAC93F7D29E63A1700693F6C /* NavigationView.swift in Sources */,
 				DAC93F1929DAB9C200693F6C /* SchedularBuilder.swift in Sources */,
 				DAC93F1A29DAB9C200693F6C /* SchedularInteractor.swift in Sources */,
 				DAC93F5C29DFD91900693F6C /* CommingListCell.swift in Sources */,
@@ -909,6 +917,14 @@
 				kind = branch;
 			};
 		};
+		DAC93F7E29E650E500693F6C /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -946,6 +962,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DAC93F7229E4E74A00693F6C /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		DAC93F7F29E650E500693F6C /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DAC93F7E29E650E500693F6C /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

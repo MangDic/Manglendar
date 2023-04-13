@@ -21,6 +21,7 @@ protocol EventViewPresentable: Presentable {
 protocol EventViewListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
     func popToRootViewController()
+    func routeToEditScreen(event: ScheduleEvent)
 }
 
 final class EventViewInteractor: PresentableInteractor<EventViewPresentable>, EventViewInteractable, EventViewPresentableListener {
@@ -45,7 +46,17 @@ final class EventViewInteractor: PresentableInteractor<EventViewPresentable>, Ev
         // TODO: Pause any business logic.
     }
     
+    // MARK: - EventViewPresentableListener
     func didTapBackButton() {
+        listener?.popToRootViewController()
+    }
+    
+    func didTapEditButton(event: ScheduleEvent) {
+        listener?.routeToEditScreen(event: event)
+    }
+    
+    func didTapDeleteButton(event: ScheduleEvent) {
+        ScheduleEventManager.shared.removeEvent(event: event)
         listener?.popToRootViewController()
     }
 }

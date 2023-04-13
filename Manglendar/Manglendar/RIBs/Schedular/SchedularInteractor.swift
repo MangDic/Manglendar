@@ -12,9 +12,11 @@ import Foundation
 
 protocol SchedularRouting: ViewableRouting {
     func navigateToDetailScreen(events: [ScheduleEvent], date: Date)
-    func navigateToAddEventScreen(date: Date?)
+    func navigateToAddEventScreen(date: Date?, event: ScheduleEvent?)
     func navigateToEventView(event: ScheduleEvent)
-    func routeToAddEventScreen(date: Date?)
+    func routeToAddEventScreen(date: Date?, event: ScheduleEvent?)
+    func routeToEventScreen(event: ScheduleEvent)
+    func routeToEditScreen(event: ScheduleEvent)
     func popToRootViewController()
 }
 
@@ -59,11 +61,21 @@ final class SchedularInteractor: PresentableInteractor<SchedularPresentable>, Sc
     }
     
     func didTapAddEventButton() {
-        router?.navigateToAddEventScreen(date: nil)
+        router?.navigateToAddEventScreen(date: nil, event: nil)
     }
     
+    // MARK: - EventViewListener
+    func routeToEditScreen(event: ScheduleEvent) {
+        router?.routeToEditScreen(event: event)
+    }
+    
+    // MARK: - EventDetailPresentableListener
     func routeToAddEventScreen(date: Date?) {
-        router?.routeToAddEventScreen(date: date)
+        router?.routeToAddEventScreen(date: date, event: nil)
+    }
+    
+    func routeToEventScreen(event: ScheduleEvent) {
+        router?.routeToEventScreen(event: event)
     }
     
     /// 일정 추가시 수행되는 로직. 딕셔너리에 추가하고 다가오는 일정 데이터를 세팅

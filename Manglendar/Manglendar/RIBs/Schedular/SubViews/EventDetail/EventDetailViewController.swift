@@ -13,10 +13,11 @@ import RxSwift
 protocol EventDetailPresentableListener: AnyObject {
     var eventsRelay: BehaviorRelay<[ScheduleEvent]> { get }
     func didTapAddButton()
+    func didTapEvent(event: ScheduleEvent)
 }
 
 final class EventDetailViewController: UIViewController, EventDetailPresentable, EventDetailViewControllable {
-
+    
     // MARK: - Properties
     weak var listener: EventDetailPresentableListener?
     
@@ -114,6 +115,13 @@ final class EventDetailViewController: UIViewController, EventDetailPresentable,
             self.emptyDescriptionLabel.isHidden = data.count != 0
             self.tableView.isHidden = data.count == 0
         }).disposed(by: disposeBag)
+        
+        tableView.rx
+            .modelSelected(ScheduleEvent.self)
+            .subscribe(onNext: { [weak self] event in
+                guard let `self` = self else { return }
+                self.listener?.didTapEvent(event: event)
+            }).disposed(by: disposeBag)
     }
     
     // MARK: - View Update

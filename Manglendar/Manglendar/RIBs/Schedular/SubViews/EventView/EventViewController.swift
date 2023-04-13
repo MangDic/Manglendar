@@ -12,6 +12,8 @@ import UIKit
 
 protocol EventViewPresentableListener: AnyObject {
     func didTapBackButton()
+    func didTapDeleteButton(event: ScheduleEvent)
+    func didTapEditButton(event: ScheduleEvent)
 }
 
 final class EventViewController: UIViewController, EventViewPresentable, EventViewViewControllable {
@@ -19,6 +21,7 @@ final class EventViewController: UIViewController, EventViewPresentable, EventVi
     weak var listener: EventViewPresentableListener?
     
     var disposeBag = DisposeBag()
+    var event: ScheduleEvent?
     
     lazy var contentView = UIView().then {
         $0.backgroundColor = .white
@@ -48,6 +51,8 @@ final class EventViewController: UIViewController, EventViewPresentable, EventVi
         $0.font = UIFont.systemFont(ofSize: 20, weight: .bold)
     }
     
+    var navigationView: NavigationView?
+    
     lazy var buttonStack = UIStackView().then {
         $0.spacing = 5
         $0.distribution = .fillEqually
@@ -60,6 +65,8 @@ final class EventViewController: UIViewController, EventViewPresentable, EventVi
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         $0.rx.tap.subscribe(onNext: { [weak self] in
             guard let `self` = self else { return }
+            guard let event = self.event else { return }
+            self.listener?.didTapDeleteButton(event: event)
         }).disposed(by: disposeBag)
     }
     
@@ -70,6 +77,8 @@ final class EventViewController: UIViewController, EventViewPresentable, EventVi
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         $0.rx.tap.subscribe(onNext: { [weak self] in
             guard let `self` = self else { return }
+            guard let event = self.event else { return }
+            self.listener?.didTapEditButton(event: event)
         }).disposed(by: disposeBag)
     }
     
@@ -77,6 +86,12 @@ final class EventViewController: UIViewController, EventViewPresentable, EventVi
         super.viewDidLoad()
         
         setupLayout()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //navigationView?.webView.stopLoading()
+        navigationView = nil
     }
     
     private func setupLayout() {
@@ -117,9 +132,21 @@ final class EventViewController: UIViewController, EventViewPresentable, EventVi
         }
     }
     
+    // MARK: - EventViewViewControllable
     func updateEventData(event: ScheduleEvent) {
+        self.event = event
         titleLabel.text = event.title
         dateLabel.text = event.date.convertDateToString(type: .comming)
         placeLabel.text = event.place == nil ? R.String.EventView.emptyPlace : event.place!.place_name
+        
+        if let placeData = event.place {
+            navigationView = NavigationView(placeData: placeData)
+            view.addSubview(navigationView!)
+            navigationView!.snp.makeConstraints {
+                $0.top.equalTo(placeLabel.snp.bottom).offset(10)
+                $0.leading.trailing.equalToSuperview().inset(20)
+                $0.bottom.equalTo(buttonStack.snp.top).offset(-10)
+            }
+        }
     }
 }

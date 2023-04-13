@@ -38,9 +38,9 @@ final class SchedularRouter: ViewableRouter<SchedularInteractable, SchedularView
         interactor.router = self
     }
     
-    func routeToAddEventScreen(date: Date?) {
-        detachCurrentChild()
-        navigateToAddEventScreen(date: date)
+    func routeToEditScreen(event: ScheduleEvent) {
+        popToRootViewController()
+        navigateToAddEventScreen(date: nil, event: event)
     }
     
     func navigateToDetailScreen(events: [ScheduleEvent], date: Date) {
@@ -53,9 +53,11 @@ final class SchedularRouter: ViewableRouter<SchedularInteractable, SchedularView
         currentChild = detailRouter
     }
 
-    func navigateToAddEventScreen(date: Date?) {
+    func navigateToAddEventScreen(date: Date?, event: ScheduleEvent?) {
         detachCurrentChild()
-        let addEventRouter = addEventBuilder.build(withListener: interactor, date: date)
+        let addEventRouter = addEventBuilder.build(withListener: interactor,
+                                                   date: date,
+                                                   event: event)
         attachChild(addEventRouter)
         viewController.replaceModal(viewController: addEventRouter.viewControllable)
         currentChild = addEventRouter
@@ -68,8 +70,21 @@ final class SchedularRouter: ViewableRouter<SchedularInteractable, SchedularView
         currentChild = eventViewRouter
     }
     
+    func routeToAddEventScreen(date: Date?, event: ScheduleEvent?) {
+        detachCurrentChild()
+        navigateToAddEventScreen(date: nil, event: event)
+    }
+    
+    func routeToEventScreen(event: ScheduleEvent) {
+        detachCurrentChild()
+        navigateToEventView(event: event)
+    }
+    
     func popToRootViewController() {
-        viewController.popToRootViewController()
+        if let currentChild = currentChild {
+            detachChild(currentChild)
+            viewController.popToRootViewController()
+        }
     }
     
     private func detachCurrentChild() {

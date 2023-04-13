@@ -11,6 +11,7 @@ import RIBs
 import RxSwift
 
 protocol AddEventPresentableListener: AnyObject {
+    var event: ScheduleEvent? { get }
     func didTapSaveButton(scheduleEvent: ScheduleEvent)
 }
 
@@ -141,12 +142,6 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
         bind()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.clearData()
-    }
-    
     // MARK: - Setup Layout
     private func setupLayout() {
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7016903707)
@@ -243,17 +238,26 @@ final class AddEventViewController: UIViewController, AddEventPresentable, AddEv
                 self.searchPlaceView.isHidden = false
                 self.view.endEditing(true)
             }).disposed(by: disposeBag)
-    }
-    
-    // MARK: - Clear Date
-    private func clearData() {
-        self.titleField.text = nil
+        
+        if let initialColorButton = colorStack.arrangedSubviews[0] as? UIButton, listener?.event == nil {
+            changeColor(tag: 0, btn: initialColorButton)
+        }
     }
     
     // MARK: - AddEventViewControllable
     func updatePickerDate(date: Date?) {
         if let date = date {
             datePicker.date = date
+        }
+    }
+    
+    func updateEventData(event: ScheduleEvent) {
+        titleField.text = event.title
+        placeField.text = event.place?.place_name
+        datePicker.date = event.date
+        let colorIndex = event.color
+        if let colorButton = colorStack.arrangedSubviews[colorIndex] as? UIButton {
+            changeColor(tag: colorIndex, btn: colorButton)
         }
     }
     

@@ -15,12 +15,13 @@ protocol AddEventDependency: Dependency {
 
 final class AddEventComponent: Component<AddEventDependency> {
     var date: Date?
+    var event: ScheduleEvent?
 }
 
 // MARK: - Builder
 
 protocol AddEventBuildable: Buildable {
-    func build(withListener listener: AddEventListener, date: Date?) -> AddEventRouting
+    func build(withListener listener: AddEventListener, date: Date?, event: ScheduleEvent?) -> AddEventRouting
 }
 
 final class AddEventBuilder: Builder<AddEventDependency>, AddEventBuildable {
@@ -29,9 +30,10 @@ final class AddEventBuilder: Builder<AddEventDependency>, AddEventBuildable {
         super.init(dependency: dependency)
     }
 
-    func build(withListener listener: AddEventListener, date: Date? = nil) -> AddEventRouting {
+    func build(withListener listener: AddEventListener, date: Date? = nil, event: ScheduleEvent? = nil) -> AddEventRouting {
         let component = AddEventComponent(dependency: dependency)
         component.date = date
+        component.event = event
         
         let viewController = AddEventViewController()
         let interactor = AddEventInteractor(presenter: viewController, component: component)

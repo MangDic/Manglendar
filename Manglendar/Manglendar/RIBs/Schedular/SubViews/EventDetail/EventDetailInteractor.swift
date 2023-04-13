@@ -20,6 +20,7 @@ protocol EventDetailPresentable: Presentable {
 
 protocol EventDetailListener: AnyObject {
     func routeToAddEventScreen(date: Date?)
+    func routeToEventScreen(event: ScheduleEvent)
 }
 
 final class EventDetailInteractor: PresentableInteractor<EventDetailPresentable>, EventDetailInteractable, EventDetailPresentableListener {
@@ -47,7 +48,12 @@ final class EventDetailInteractor: PresentableInteractor<EventDetailPresentable>
         // TODO: Pause any business logic.
     }
     
+    // MARK: EventDetailPresentableListener
     func didTapAddButton() {
         listener?.routeToAddEventScreen(date: component.date)
+    }
+    
+    func didTapEvent(event: ScheduleEvent) {
+        listener?.routeToEventScreen(event: event)
     }
 }

@@ -19,7 +19,7 @@ class PlaceSearchService: NSObject, CLLocationManagerDelegate {
     var currentLogiture: CGFloat = 0.0
     
     let headers: HTTPHeaders = [
-        "Authorization": "KakaoAK {API Key}"
+        "Authorization": "KakaoAK 70187c8bbe5201f141ba7d33b3869969"
     ]
     
     private override init() {
