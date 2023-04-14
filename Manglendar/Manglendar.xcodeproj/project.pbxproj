@@ -327,7 +327,6 @@
 				DAC93F5829DFB49600693F6C /* Resource.swift */,
 				DAC93F5E29DFEAA100693F6C /* ScheduleEventManager.swift */,
 				DAC93F7529E4E83300693F6C /* PlaceSearchService.swift */,
-				DAC93F7C29E63A1700693F6C /* NavigationView.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -335,6 +334,7 @@
 		DAC93F6629E4035000693F6C /* EventView */ = {
 			isa = PBXGroup;
 			children = (
+				DAC93F8529E7F9A400693F6C /* SubView */,
 				DAC93F6729E4035D00693F6C /* EventViewRouter.swift */,
 				DAC93F6829E4035D00693F6C /* EventViewController.swift */,
 				DAC93F6929E4035D00693F6C /* EventViewBuilder.swift */,
@@ -347,6 +347,14 @@
 			isa = PBXGroup;
 			children = (
 				DAC93F7829E4ECA300693F6C /* SearchPlaceView.swift */,
+			);
+			path = SubView;
+			sourceTree = "<group>";
+		};
+		DAC93F8529E7F9A400693F6C /* SubView */ = {
+			isa = PBXGroup;
+			children = (
+				DAC93F7C29E63A1700693F6C /* NavigationView.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";

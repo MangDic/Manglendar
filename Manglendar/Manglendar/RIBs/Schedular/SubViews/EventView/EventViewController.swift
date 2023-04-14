@@ -38,20 +38,23 @@ final class EventViewController: UIViewController, EventViewPresentable, EventVi
     
     lazy var dateLabel = UILabel().then {
         $0.textColor = #colorLiteral(red: 0.6242372399, green: 0.6242372399, blue: 0.6242372399, alpha: 1)
+        $0.backgroundColor = .white
         $0.font = UIFont.systemFont(ofSize: 20, weight: .bold)
     }
     
     lazy var titleLabel = UILabel().then {
         $0.textColor = #colorLiteral(red: 0.6242372399, green: 0.6242372399, blue: 0.6242372399, alpha: 1)
+        $0.backgroundColor = .white
         $0.font = UIFont.systemFont(ofSize: 20, weight: .bold)
     }
     
     lazy var placeLabel = UILabel().then {
         $0.textColor = #colorLiteral(red: 0.6242372399, green: 0.6242372399, blue: 0.6242372399, alpha: 1)
+        $0.backgroundColor = .white
         $0.font = UIFont.systemFont(ofSize: 20, weight: .bold)
     }
     
-    var navigationView: NavigationView?
+    lazy var navigationView = NavigationView()
     
     lazy var buttonStack = UIStackView().then {
         $0.spacing = 5
@@ -107,14 +110,14 @@ final class EventViewController: UIViewController, EventViewPresentable, EventVi
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        //navigationView?.webView.stopLoading()
-        navigationView = nil
+        navigationView.webView.stopLoading()
     }
     
     private func setupLayout() {
         view.backgroundColor = .white
         
         view.addSubviews([backbutton,
+                          navigationView,
                           titleLabel,
                           dateLabel,
                           placeLabel,
@@ -130,17 +133,24 @@ final class EventViewController: UIViewController, EventViewPresentable, EventVi
         
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(backbutton.snp.bottom).offset(20)
-            $0.leading.equalToSuperview().inset(20)
+            $0.leading.trailing.equalToSuperview().inset(20)
         }
         
         dateLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(15)
-            $0.leading.equalToSuperview().inset(20)
+            $0.leading.trailing.equalToSuperview().inset(20)
         }
         
         placeLabel.snp.makeConstraints {
-            $0.top.equalTo(dateLabel.snp.bottom).offset(15)
-            $0.leading.equalToSuperview().inset(20)
+            $0.top.equalTo(dateLabel.snp.bottom)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.height.equalTo(placeLabel.frame.height + 50)
+        }
+        
+        navigationView.snp.makeConstraints {
+            $0.top.equalTo(placeLabel.snp.bottom).inset(44)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.bottom.equalTo(buttonStack.snp.top).offset(-10)
         }
         
         buttonStack.snp.makeConstraints {
@@ -155,15 +165,8 @@ final class EventViewController: UIViewController, EventViewPresentable, EventVi
         titleLabel.text = event.title
         dateLabel.text = event.date.convertDateToString(type: .comming)
         placeLabel.text = event.place == nil ? R.String.EventView.emptyPlace : event.place!.place_name
-        
         if let placeData = event.place {
-            navigationView = NavigationView(placeData: placeData)
-            view.addSubview(navigationView!)
-            navigationView!.snp.makeConstraints {
-                $0.top.equalTo(placeLabel.snp.bottom).offset(10)
-                $0.leading.trailing.equalToSuperview().inset(20)
-                $0.bottom.equalTo(buttonStack.snp.top).offset(-10)
-            }
+            navigationView.configure(placeData: placeData)
         }
     }
 }

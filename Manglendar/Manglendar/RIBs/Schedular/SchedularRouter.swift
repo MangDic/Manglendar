@@ -72,7 +72,7 @@ final class SchedularRouter: ViewableRouter<SchedularInteractable, SchedularView
     
     func routeToAddEventScreen(date: Date?, event: ScheduleEvent?) {
         detachCurrentChild()
-        navigateToAddEventScreen(date: nil, event: event)
+        navigateToAddEventScreen(date: date, event: event)
     }
     
     func routeToEventScreen(event: ScheduleEvent) {

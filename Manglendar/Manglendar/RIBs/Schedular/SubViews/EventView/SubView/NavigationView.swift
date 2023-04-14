@@ -13,18 +13,21 @@ import Alamofire
 class NavigationView: UIView, UIWebViewDelegate {
     
     var webView = WKWebView()
-    let placeData: PlaceData
+    var placeData: PlaceData?
     
-    init(placeData: PlaceData) {
-        self.placeData = placeData
+    init() {
         super.init(frame: .zero)
         
-        setupWebView2()
         setupLayout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(placeData: PlaceData) {
+        self.placeData = placeData
+        setupWebView2()
     }
     
     private func setupLayout() {
@@ -39,6 +42,7 @@ class NavigationView: UIView, UIWebViewDelegate {
     }
     
     private func setupWebView() {
+        guard let placeData = placeData else { return }
         webView.navigationDelegate = self
         let encodedPlace = placeData.place_name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         let urlStr = "https://map.kakao.com/?q=\(encodedPlace!)&latitude=\(placeData.y)&longitude=\(placeData.x)"
@@ -50,6 +54,9 @@ class NavigationView: UIView, UIWebViewDelegate {
     }
     
     private func setupWebView2() {
+        guard let placeData = placeData else { return }
+        webView.navigationDelegate = self
+        
         let transportMode = "transit"
         let startLocation = "내위치"
         
@@ -57,7 +64,6 @@ class NavigationView: UIView, UIWebViewDelegate {
         let encodedPlaceName = placeData.place_name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let urlStr = baseUrl + "ep=\(placeData.x),\(placeData.y)&endLoc=\(encodedPlaceName)"
         
-        print(urlStr)
         if let myUrl = URL(string: urlStr) {
             let myRequest = URLRequest(url: myUrl)
             webView.load(myRequest)
@@ -69,6 +75,22 @@ extension NavigationView: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if let currentURL = webView.url {
             print("Current URL: \(currentURL)")
+        }
+        // script를 사용해서 상단바의 요소에 접근합니다.
+        let script = """
+                    const daumHead = document.querySelector('#daumHead');
+                    const daumWrap = document.querySelector('#daumWrap');
+                    daumHead.style.display = 'none';
+                    daumWrap.style.paddingTop = '0';
+                """
+        
+        webView.evaluateJavaScript(script) { (result, error) in
+            if let error = error {
+                print("Error hiding top bar: \(error.localizedDescription)")
+            } else {
+                print("Top bar hidden successfully")
+                
+            }
         }
     }
 }

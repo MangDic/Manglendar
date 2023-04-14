@@ -52,7 +52,7 @@ class PlaceSearchService: NSObject, CLLocationManagerDelegate {
             "size": 15,
             "x": "\(currentLogiture)",
             "y": "\(currentLatitude)",
-            "sort": "distance"
+            //"sort": "distance"
         ]
         
         var updatedParameters = parameters
